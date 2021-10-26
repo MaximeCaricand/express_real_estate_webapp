@@ -1,0 +1,21 @@
+{
+  "name": "express_real_estate_website",
+  "version": "1.0.0",
+  "description": "- Année : M2 IWOCS - Matière: WEB - TP : n°1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js",
+    "start-db": "docker-compose up -d"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://www-apps.univ-lehavre.fr/forge/cm171529/express_real_estate_website.git"
+  },
+  "keywords": [],
+  "author": "Maxime Caricand && Florian Henry",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^6.0.12"
+  }
+}
