@@ -17,5 +17,6 @@
   "license": "ISC",
   "dependencies": {
     "mongoose": "^6.0.12"
-  }
+  },
+  "type": "module"
 }
