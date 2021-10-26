@@ -14,4 +14,4 @@
 
 ## Travail à réaliser
 
-Détail du tp : <https://pigne.org/teaching/webdev2/lecture/ServerSideFrameworks>
+Détail du tp : <https://pigne.org/teaching/webdev2/lab/WebFrameworksLab>
