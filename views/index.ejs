@@ -7,14 +7,47 @@
 </head>
 
 <body>
-    <div class="row">
-        <div class="col-md-6" style="background-color: yellow; ">
-            <p>What's up bro</p>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/" style="color: rgb(71, 91, 151)">Etatse Lear</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Annonces</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">je sais pas</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Edition
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">Profil</a></li>
+                            <hr/>
+                            <li><a class="dropdown-item" href="#">Mes annonces</a></li>
+                            <li><a class="dropdown-item" href="#">Commentaires</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">se connecter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">s'inscrire</a>
+                    </li>
+                </ul>
+            </div>
+
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
         </div>
-        <div class="col-md-6" style="background-color: blue;">
-            <p>Fine</p>
-        </div>
-    </div>
+    </nav>
 </body>
 
 </html>
