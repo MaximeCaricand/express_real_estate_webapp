@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>Cours Complet Bootstrap 4</title>
-    <meta charset='utf-8'>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <%- include('../partials/head'); %>
 </head>
 
-<body>
-    <div class="container">
+
+<body class="container">
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+
+    <main>
         <h1>Incription</h1>
         <label for="surname" style="color:red">(* obligatoire)</label><br><br>
         <form class="needs-validation" novalidate>
@@ -51,6 +52,19 @@
                 <div class="col-md-3 mb-3">
                     <label for="country">Pays</label>
                     <input type="text" class="form-control" id="country" placeholder="France">
+                    <select name="pays">
+                        <option value="France" selected="selected">France </option>
+
+                        
+                    
+                        <option value="Afghanistan">Afghanistan </option>
+                        <option value="Afrique_Centrale">Afrique_Centrale </option>
+                        <option value="Afrique_du_sud">Afrique_du_Sud </option>
+                        <option value="Albanie">Albanie </option>
+                        <option value="Algerie">Algerie </option>
+                        <option value="Allemagne">Allemagne </option>
+                        <option value="Andorre">Andorre </option>
+                    </select>
                 </div>
 
                 <div class="col-md-3 mb-3">
@@ -122,7 +136,7 @@
 
             <button class="btn btn-primary" type="submit">Incription</button>
         </form>
-    </div>
+    </main>
 
     <script>
         /*La fonction principale de ce script est d'empêcher l'envoi du formulaire si un champ a été mal rempli
@@ -144,6 +158,9 @@
         })();
     </script>
 
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
 </body>
-
 </html>
+    
