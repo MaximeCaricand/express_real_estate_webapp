@@ -6,8 +6,8 @@ const { validationResult } = require('express-validator')
 
 
 /* GET register page. */
-router.get('/', function (req, res, next) {
-    res.render('register');
+router.get('/', function(req, res, next) {
+    res.render('pages/register');
 });
 
 router.post('/', [...registerValidation], async function (req, res, next) {
