@@ -4,7 +4,7 @@ var router = express.Router();
 
 /* GET login listing. */
 router.get('/', function (req, res, next) {
-  res.render('login');
+  res.render('pages/login');
 });
 
 module.exports = router;

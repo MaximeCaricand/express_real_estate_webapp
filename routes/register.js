@@ -6,14 +6,14 @@ const { validationResult } = require('express-validator')
 
 
 /* GET register page. */
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
     res.render('pages/register');
 });
 
 router.post('/', [...registerValidation], async function (req, res, next) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.render('register', { errors: errors.array() });
+        return res.render('pages/register', { errors: errors.array() });
     }
     const hash = await bcrypt.hash(req.body.password, 10);
     const newUserData = {
@@ -24,7 +24,7 @@ router.post('/', [...registerValidation], async function (req, res, next) {
         .then(() => res.redirect(301, '/login'))
         .catch(error => {
             if (error === 'Email already exists') {
-                return res.render('register', { errors: [{ msg: 'Email already associated to an account' }] });
+                return res.render('pages/register', { errors: [{ msg: 'Email already associated to an account' }] });
             }
             return res.status(500).json({ error })
         });
