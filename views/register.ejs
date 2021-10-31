@@ -1,148 +1,59 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Cours Complet Bootstrap 4</title>
-    <meta charset='utf-8'>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-</head>
-
-<body>
-    <div class="container">
-        <h1>Incription</h1>
-        <form class="needs-validation" novalidate>
-
-            <!-- Données obligatoires -->
-            <div class="form-row">
-                <div class="col-md-5 mb-3">
-                    <label for="surname">Nom et prénom</label>&nbsp;<label for="surname" style="color:red">*</label>
-                    <input type="text" class="form-control" id="surname" placeholder="Richard Pierre" required>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="col-md-5 mb-3">
-                    <label for="mail">Mail</label>&nbsp;<label for="mail" style="color:red">*</label>
-                    <input type="text" class="form-control" id="mail" placeholder="pierre.richard@gmail.com" required>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="col-md-5 mb-3">
-                    <label for="mdp1">Mot de passe (8 caractères minimum)</label>&nbsp;<label for="mdp1" style="color:red">*</label><br>
-                    <input type="password" minlength="8" id="mdp1" required>
-                    <i class="far fa-eye" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="col-md-5 mb-3">
-                    <label for="mdp2">Confirmer le mot de passe</label>&nbsp;<label for="mdp2" style="color:red">*</label><br>
-                    <input type="password" id="mdp2" required>
-                    <i class="far fa-eye" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i>
-                </div>
-            </div>
-
-            <!-- Données facultatives -->
-            <div class="form-row">
-                <div class="col-md-3 mb-3">
-                    <label for="country">Pays</label>
-                    <input type="text" class="form-control" id="country" placeholder="France">
-                </div>
-
-                <div class="col-md-3 mb-3">
-                    <label for="city">Ville</label>
-                    <input type="text" class="form-control" id="city" placeholder="Paris">
-                </div>
-
-                <div class="col-md-3 mb-3">
-                    <label for="cp">Code postal</label>
-                    <input type="number" class="form-control" id="cp" min="1" max="999999" placeholder="75000">
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="col-md-3 mb-3">
-                    <label for="situation">Situation</label>
-
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="seul" id="situation1">
-                        <label class="form-check-label" for="situation1">Seul</label>
-
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="couple" id="situation2">
-                        <label class="form-check-label" for="situation2">Couple</label>
-
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="famille" id="situation3">
-                        <label class="form-check-label" for="situation3">Famille</label>
-
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="rien" id="situation4" checked>
-                        <label class="form-check-label" for="situation4">ne préfere pas préciser</label>
+<%- include('../views/head')-%>
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-6">
+                <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+                        <div class="mb-md-5 mt-md-4">
+                            <h2 class="fw-bold mb-5">REGISTER</h2>
+                            <form class="needs-validation" action="/signup" method="post" novalidate>
+                                <div class="form-group">
+                                    <div class="form-group form-white mb-4 col-md-12 required">
+                                        <label for="email">Email</label>
+                                        <input type="email" id="email" class="form-control" required />
+                                        <div class="invalid-feedback">
+                                            Please provide a valid email.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-2" name="firstname-lastname">
+                                    <div class="form-group form-white mb-4 col-md-6 required">
+                                        <label for="firstname">Firstname</label>
+                                        <input type="text" id="firstname" class="form-control" required />
+                                    </div>
+                                    <div class="form-group form-white mb-4 col-md-6 required">
+                                        <label for="lastname">Lastname</label>
+                                        <input type="text" id="lastname" class="form-control" required />
+                                    </div>
+                                </div>
+                                <div class="row" name="password">
+                                    <div class="form-group form-white mb-4 col-md-6 required">
+                                        <label for="password">Password</label>
+                                        <input type="password" id="password" class="form-control" required />
+                                    </div>
+                                    <div class="form-group form-white mb-4 col-md-6 required">
+                                        <label for="confirmPassword">Confirm password</label>
+                                        <input type="password" id="confirmPassword" class="form-control" required />
+                                    </div>
+                                </div>
+                                <div class="form-group form-check mt-2 mb-4">
+                                    <input class="form-check-input" type="checkbox" id="cgu" required>
+                                    <label class="form-check-label" for="cgu">
+                                        I agree to the terms and conditions
+                                    </label>
+                                    <div class="invalid-feedback">Please accept this to register</div>
+                                </div>
+                                <button class="btn btn-light btn-lg px-5" type="submit">Register</button>
+                            </form>
+                        </div>
+                        <div>
+                            <p class="mb-0">Already have an account?
+                                <a href="/login" class="text-white-50 fw-bold">Login</a>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="form-row">
-                <div class="col-md-3 mb-3">
-                    <label for="preference">Préférence</label>
-
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="maison" id="preference1">
-                        <label class="form-check-label" for="preference1">Maison</label>
-
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="appartement" id="preference2">
-                        <label class="form-check-label" for="preference2">Appartement</label>
-
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="tout" id="preference3" checked>
-                        <label class="form-check-label" for="preference3">Tout</label>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Vérification de l'acceptation de la charte -->
-            <div class="form-group">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="cgu" required>
-                    <label class="form-check-label" for="cgu">J'accepte les conditions générales d'utilisation et de vente</label>
-                    <div class="invalid-feedback">Vous devez accepter les CGU pour continuer</div>
-                </div>
-            </div>
-
-            <button class="btn btn-primary" type="submit">Incription</button>
-        </form>
+        </div>
     </div>
-
-    <script>
-        /*La fonction principale de ce script est d'empêcher l'envoi du formulaire si un champ a été mal rempli
-         *et d'appliquer les styles de validation aux différents éléments de formulaire*/
-        (function() {
-            'use strict';
-            window.addEventListener('load', function() {
-                let forms = document.getElementsByClassName('needs-validation');
-                let validation = Array.prototype.filter.call(forms, function(form) {
-                    form.addEventListener('submit', function(event) {
-                        if (form.checkValidity() === false) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            }, false);
-        })();
-    </script>
-
-</body>
-
-</html>
+    <script type="text/javascript" src="/js/validateRegister.js"></script>
