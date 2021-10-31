@@ -14,32 +14,30 @@
                         <% }); %>
                         <% } %>
                         <form class="needs-validation" method="post" novalidate>
-                            <div class="form-group">
-                                <div class="form-group form-white mb-4 col-md-12 required">
-                                    <label for="email">Email</label>
-                                    <input type="email" id="email" name="email" class="form-control" required />
-                                    <div class="invalid-feedback">
-                                        Please provide a valid email.
-                                    </div>
+                            <div class="form-group form-white mb-4 col-md-12 need-required">
+                                <label for="email">EMAIL</label>
+                                <input type="email" id="email" name="email" class="form-control" required />
+                                <div class="invalid-feedback">
+                                    Please provide a valid email.
                                 </div>
                             </div>
                             <div class="row mb-2" name="firstname-lastname">
-                                <div class="form-group form-white mb-4 col-md-6 required">
+                                <div class="form-group form-white mb-4 col-md-6 need-required">
                                     <label for="firstname">Firstname</label>
                                     <input type="text" id="firstname" name="firstname" class="form-control" required />
                                 </div>
-                                <div class="form-group form-white mb-4 col-md-6 required">
+                                <div class="form-group form-white mb-4 col-md-6 need-required">
                                     <label for="lastname">Lastname</label>
                                     <input type="text" id="lastname" name="lastname" class="form-control" required />
                                 </div>
                             </div>
                             <div class="row" name="password">
-                                <div class="form-group form-white mb-4 col-md-6 required">
+                                <div class="form-group form-white mb-4 col-md-6 need-required">
                                     <label for="password">Password</label>
                                     <input type="password" id="password" name="password" class="form-control"
                                         required />
                                 </div>
-                                <div class="form-group form-white mb-4 col-md-6 required">
+                                <div class="form-group form-white mb-4 col-md-6 need-required">
                                     <label for="confirmPassword">Confirm password</label>
                                     <input type="password" id="confirmPassword" name="confirmPassword"
                                         class="form-control" required />
@@ -65,4 +63,3 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="/js/validateRegister.js"></script>

@@ -6,7 +6,16 @@
     padding-bottom: 2px !important;
 }
 
-.form-group.required > label:after {
-    content:" *";
+.required {
     color:red;
-  }
+}
+
+.required:after {
+    content:" - Mandatory";
+    font-style: italic;
+}
+.form-control.is-valid, .was-validated .form-control:valid, 
+.form-control.is-invalid, .was-validated .form-control:invalid {
+    background-image: url()!important;
+    border-color: #ced4da;
+}
