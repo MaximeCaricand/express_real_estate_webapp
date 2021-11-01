@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%- include('../../partials/head'); %>
+
+    <style>
+        table td:hover {
+            background-color: rgba(25, 186, 186, 0.2);
+        }
+    </style>
+</head>
+
+
+<body class="container">
+    <header>
+        <%- include('../../partials/header'); %>
+    </header>
+
+
+    <main>
+        <h1>Voici les différentes annonces du moment</h1>
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <% var nbColonne = 3; %>
+                <% for(var lig = 0; lig < obj.length; lig) { %>
+                    <tr colspan="<%= nbColonne %>">
+                        <% for(var col = 0; col < nbColonne; col++) { %>
+                            
+                            <td style="text-align: center; cursor:pointer;" onclick="location.href = '/content/ads/detail?id=<%= ads[lig].id %>';">
+                                <div class="image-container">
+                                    <img class="replace-2x img-responsive b-lazy b-loaded"
+                                    src="../../../<%= obj[lig].src_images[0] %>"
+                                    alt="<%= obj[lig].title %>"
+                                    title="<%= obj[lig].title %>"
+                                    itemprop="image" width="350" height="350">
+                                </div>
+                                <div class="info">
+                                    <h3><%= obj[lig].title %></h3>
+                                    <h3><%= obj[lig].price %></h3>
+                                </div>
+                            </td>
+
+                        <%  lig++;
+                            if(lig >= obj.length)
+                                col = nbColonne;
+                        } %>
+                    </tr>
+                <% } %>
+            </table>
+        </div>
+    </main>
+    
+
+    <%- include('../../partials/footer'); %>
+</body>
+</html>

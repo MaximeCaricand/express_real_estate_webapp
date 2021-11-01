@@ -7,6 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var registerRouter = require('./routes/register');
+var contentRouter = require('./routes/content');
 
 var app = express();
 
@@ -20,10 +21,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules/bootstrap/dist')));
+app.use('/images', express.static(path.join(__dirname, 'public/assets/images')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/register', registerRouter);
+app.use('/content', contentRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
