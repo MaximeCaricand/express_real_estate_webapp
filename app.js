@@ -3,7 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const bodyParser = require('body-parser');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const { connect } = require('./lib/index');
 
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
@@ -19,13 +21,29 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(bodyParser.json());
+app.use(require('express-session')({
+    secret: 'khfuhqhbuenubfhaeicaubcieuziochbzeuzbuzecbzeub',
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules/bootstrap/dist')));
 
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
+
+// passport config
+const User = require('./lib/schemas/user.schema');
+passport.use(new LocalStrategy({
+    usernameField: 'email'
+}, User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+connect();
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
