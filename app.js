@@ -24,12 +24,14 @@ app.use(cookieParser());
 app.use(require('express-session')({
     secret: 'khfuhqhbuenubfhaeicaubcieuziochbzeuzbuzecbzeub',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: { _expires: 60000000 }
 }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules/bootstrap/dist')));
+app.use(express.static(path.join(__dirname, 'node_modules/@fortawesome/fontawesome-free')));
 
 app.use('/', indexRouter);
 app.use('/login', loginRouter);

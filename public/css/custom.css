@@ -19,3 +19,12 @@
     background-image: url()!important;
     border-color: #ced4da;
 }
+
+.nav-link {
+    color: white !important;
+}
+
+.navbar-brand {
+    color: rgb(71, 91, 151) !important;
+    padding-right: 10px !important;
+}
