@@ -4,8 +4,21 @@
     <%- include('../../partials/head'); %>
 
     <style>
-        table td:hover {
+        #selectAdImage:hover {
             background-color: rgba(25, 186, 186, 0.2);
+        }
+        #selectAdDispo {
+            color: rgba(13, 175, 48, 0.8);
+        }
+        #selectAdIndispo {
+            color: rgba(253, 27, 27, 0.8);
+        }
+        table.info td{
+            font: bold;
+        }
+        table.info td.disponibilite {
+            margin-top: 0;
+            text-align: right;
         }
     </style>
 </head>
@@ -27,8 +40,8 @@
                     <tr colspan="<%= nbColonne %>">
                         <% for(var col = 0; col < nbColonne; col++) { %>
                             
-                            <td style="text-align: center; cursor:pointer;" onclick="location.href = '/content/ads/detail?id=<%= ads[lig].id %>';">
-                                <div class="image-container">
+                            <td id="selectAdImage" style="cursor:pointer;" onclick="location.href = '/content/ads/detail?id=<%= ads[lig].id %>';">
+                                <div style="text-align: center;" class="image-container">
                                     <img class="replace-2x img-responsive b-lazy b-loaded"
                                     src="../../../<%= obj[lig].src_images[0] %>"
                                     alt="<%= obj[lig].title %>"
@@ -36,8 +49,21 @@
                                     itemprop="image" width="350" height="350">
                                 </div>
                                 <div class="info">
-                                    <h3><%= obj[lig].title %></h3>
-                                    <h3><%= obj[lig].price %></h3>
+                                    <table>
+                                        <tr style="text-align: center;">
+                                            <td><%= obj[lig].title %></td>
+                                            <% var estDispo = obj[lig].status === "DISPONIBLE"; %>
+                                            <td id="<%= (estDispo ? "selectAdDispo" : "selectAdIndispo") %>" rowspan="2">
+                                                <%= (estDispo ?
+                                                    "("+obj[lig].status+") "+obj[lig].type :
+                                                    obj[lig].status)
+                                                %>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><%= obj[lig].price %></td>
+                                        </tr>
+                                    </table>
                                 </div>
                             </td>
 
