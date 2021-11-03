@@ -44,10 +44,11 @@
                     <tr colspan="<%= nbColonne %>">
                         <% for(var col = 0; col < nbColonne; col++) { %>
                             
-                            <td id="selectAdImage" style="cursor:pointer;" onclick="location.href = '/content/ads/detail?id=<%= ads[lig].id %>';">
+                            <td id="selectAdImage" style="cursor:pointer;" onclick="location.href = '/content/ads/detail?id=<%= obj[lig].id %>';">
                                 <% var larg = 350; var haut = 350; %>
                                 <% var estDispo = obj[lig].status === "DISPONIBLE"; %>
 
+                                <!-- Div permettant de mettre en superposition l'image principale de l'annonce et la croix rouge si le bien est vendu/loué -->
                                 <div class="containerdiv">
                                     <% if(! estDispo) { %>
                                         <img class="img-responsive cornerimage"
@@ -64,6 +65,7 @@
                                     width="<%= larg %>" height="<%= haut %>">
                                 </div>
 
+                                <!-- Div permettant d'afficher les premières inforamtions concernant le bien (Titre, prix, disponibilité, type) -->
                                 <div class="info">
                                     <table style="margin-left: 32px;" width="<%= larg %>">
                                         <tr>

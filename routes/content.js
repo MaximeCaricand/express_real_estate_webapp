@@ -1,11 +1,14 @@
 var express = require('express');
 var router = express.Router();
 
-ads = [{id:1, title:"MAISON DE FOU", type:"A VENDRE", price:"125 000€", published:"true", status:"DISPONIBLE", creator:"flo", src_images:["images/maison_de_fou_1.jpg","images/maison_de_fou_2.jpg","images/maison_de_fou_3.jpg"], description:"description 1"},
-{id:2, title:"PETIT APPARTEMENT", type:"A LOUER", price:"820€ / mois", published:"true", status:"LOUÉ", creator:"flo", src_images:["images/petit_appartement.jpg"], description:"description 2"},
-{id:3, title:"GROSSE BARAQUE", type:"A LOUER", price:"2 390€ / mois", published:"true", status:"DISPONIBLE", creator:"angel", src_images:["images/grosse_baraque_1.jpeg","images/grosse_baraque_2.jpeg","images/grosse_baraque_3.jpeg","images/grosse_baraque_4.jpeg","images/grosse_baraque_5.jpeg","images/grosse_baraque_6.jpeg"], description:"description 3"},
-{id:4, title:"MANOIR", type:"A VENDRE", price:"1 490 000€", published:"true", status:"VENDU", creator:"angel", src_images:["images/none.jpg"], description:"description 4"},
-{id:5, title:"EL PALACO", type:"A VENDRE", price:"5 732 000€", published:"true", status:"DISPONIBLE", creator:"max", src_images:["images/palace_1.jpg","images/palace_2.jpg"],
+var typeVendre = "A VENDRE"
+var typeLouer  = "A LOUER"
+
+ads = [{id:1, title:"MAISON DE FOU", type:typeVendre, price:"125 000€", published:"true", status:"DISPONIBLE", starting:"03/11/2021", src_images:["images/maison_de_fou_1.jpg","images/maison_de_fou_2.jpg","images/maison_de_fou_3.jpg"], description:"description 1"},
+{id:2, title:"PETIT APPARTEMENT", type:typeLouer, price:"820€ / mois", published:"true", status:"LOUÉ", starting:"14/08/2019", src_images:["images/petit_appartement.jpg"], description:"description 2"},
+{id:3, title:"GROSSE BARAQUE", type:typeLouer, price:"2 390€ / mois", published:"false", status:"DISPONIBLE", starting:"November 24th, 1998", src_images:["images/grosse_baraque_1.jpeg","images/grosse_baraque_2.jpeg","images/grosse_baraque_3.jpeg","images/grosse_baraque_4.jpeg","images/grosse_baraque_5.jpeg","images/grosse_baraque_6.jpeg"], description:"description 3"},
+{id:4, title:"MANOIR", type:typeVendre, price:"1 490 000€", published:"true", status:"VENDU", starting:"06-06-2487", src_images:["images/none.jpg"], description:"description 4"},
+{id:5, title:"EL PALACO", type:typeVendre, price:"5 732 000€", published:"false", status:"DISPONIBLE", starting:"27-02-1999", src_images:["images/palace_1.jpg","images/palace_2.jpg"],
 description:"Tavira - Villa typique 'algarvia' 4 chambres, jardin-piscine, nature - Orpi Olhão - Faro - Algarve - Portugal\n"+
 "Localisée dans les collines de l'arrière-pays de Tavira, cette charmante villa d'architecture traditionnelle vous séduira pour son calme, ses espaces extérieurs et sa magnifique vue sur l'océan.\n"+
 "\n"+"\n"+
@@ -41,18 +44,20 @@ router.get('/', function (req, res, next) {
 /* GET all ads page. */
 router.get('/ads/all', function (req, res, next) {
     obj = ads.filter( ad => ad.published === "true");
+    console.log(ads);
+    console.log(obj);
     res.render('content/ads/ads', obj);
 });
 
 /* GET sold ads page. */
 router.get('/ads/sold', function (req, res, next) {
-    obj = ads.filter( ad => ad.published === "true").filter( ad => ad.type === "VENDRE");
+    obj = ads.filter( ad => ad.published === "true").filter( ad => ad.type === typeVendre);
     res.render('content/ads/ads', obj);
 });
 
 /* GET location ads page. */
 router.get('/ads/location', function (req, res, next) {
-    obj = ads.filter( ad => ad.published === "true").filter( ad => ad.type === "LOUER");
+    obj = ads.filter( ad => ad.published === "true").filter( ad => ad.type === typeLouer);
     res.render('content/ads/ads', obj);
 });
 
