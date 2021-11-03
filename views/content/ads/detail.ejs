@@ -8,6 +8,15 @@
             document.getElementById("myImageView").src=newImage;
         }
     </script>
+
+    <style>
+        #selectAdDispo {
+            color: rgba(13, 175, 48, 0.8);
+        }
+        #selectAdIndispo {
+            color: rgba(253, 27, 27, 0.8);
+        }
+    </style>
 </head>
 
 
@@ -18,10 +27,14 @@
 
 
     <main>
-        <h1>Regardons en détail l'annonce : '<%= ad.title %>'</h1>
+        <!--<h1>Regardons en détail l'annonce : '<%= ad.title %>'</h1>-->
+        <br><br><br>
         
-        <div class="row" style="border:none; background:transparent; height:280px;">
+        <div class="row" style="border:none; background:transparent; height:300px;">
+
+            <!-- Div permettant de mettre en superposition l'image principale de l'annonce et la croix rouge si le bien est vendu/loué -->
             <div class="col-sm-6 col-md-6 col-xs-12">
+                <!-- Image principal qui est affiché -->
                 <img id="myImageView" class="replace-2x img-responsive b-lazy b-loaded"
                 src="../../../<%= ad.src_images[0] %>"
                 alt="<%= ad.title %>"
@@ -29,6 +42,7 @@
                 itemprop="image" width="100%" height="230px"
                 style="border:1px solid darkslategray; max-width:100%; max-height:230px"/>
 
+                <!-- Liste de toutes les images liées à l'annonce. Au clic sur l'une d'elle, l'image principal affiché (ci-dessus) est remplacé par celle selectionné -->
                 <div class="listImage" style="margin-top: 1em;">
                     <% for(var ind = 0; ind < ad.src_images.length; ind++) { %>
                         <img class="imgSelection" src="../../../<%= ad.src_images[ind] %>"
@@ -37,24 +51,39 @@
                     <% } %>
                 </div>
             </div>
+
+            <!-- Div permettant d'afficher les informations les plus importantes concernant le bien (Titre, prix, disponibilité, type, date de dispo) -->
             <div class="col-sm-6 col-md-6 col-xs-12">
-                <h3 style="margin-bottom: 0; color:#03225C;"><%= ad.title %></h3>
-                <h3 style="color:#0daf30;"><%= ad.price %></h3>
+                <% var estDispo = ad.status === "DISPONIBLE"; %>
 
-                <!--
-                <% var descript = ad.description.split('\n'); %>
-                <p class="text-justify" style="font-size:12px; color:#03225C;"></p>
-                    <% for(var br = 0; br < descript.length; br++) { %>
-                        <%= descript[br] %><br>
+                <h2 style="margin-bottom: 0; color:#03225C;"><%= ad.title %></h2>
+                <i id="<%= (estDispo ? "selectAdDispo" : "selectAdIndispo") %>">
+                    <%= (estDispo ?
+                    "Disponible " :
+                    "INDISPONIBLE ")
+                    %>
+
+                    <% if (estDispo) { %>
+                        <%= (ad.type === "A VENDRE" ?
+                        "à la vente" :
+                        "à la location")
+                        %>
                     <% } %>
-                </p>-->
-                <label for="description" class="form-label">Description du bien</label>
-                <textarea id="description" class="form-control form-control-sm" type="text" cols='70' rows='8' spellcheck="false" style="color:#03225C; resize:none" readonly>
-                    <%= ad.description %>
-                </textarea>
+                </i>
+                
+                <br><br><br>
+                <h3 style="color:#03225C;">Tarif : <%= ad.price %></h3>
 
+                <br><br>
+                <p class="text-start fs-4">Available from : <%= ad.starting %></p>
             </div>
         </div>
+
+        <!-- Textarea permettant d'afficher tout le contenu de la description du bien -->
+        <label for="description" class="form-label">Description du bien</label>
+        <textarea id="description" class="form-control form-control-sm" type="text" cols='70' rows='8' spellcheck="false" style="color:#03225C; resize:none" readonly>
+            <%= ad.description %>
+        </textarea>
     </main>
     
 
