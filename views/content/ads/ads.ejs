@@ -47,6 +47,7 @@
                             <td id="selectAdImage" style="cursor:pointer;" onclick="location.href = '/content/ads/detail?id=<%= obj[lig].id %>';">
                                 <% var larg = 350; var haut = 350; %>
                                 <% var estDispo = obj[lig].status === "DISPONIBLE"; %>
+                                <% var imagesExiste = (obj[lig].src_images != undefined); %>
 
                                 <!-- Div permettant de mettre en superposition l'image principale de l'annonce et la croix rouge si le bien est vendu/loué -->
                                 <div class="containerdiv">
@@ -59,7 +60,7 @@
                                     <% } %>
 
                                     <img class="img-responsive rounded b-lazy b-loaded"
-                                    src="../../../<%= obj[lig].src_images[0] %>"
+                                    src="../../../<%= (imagesExiste ? obj[lig].src_images[0] : "images/none.jpg") %>"
                                     alt="<%= obj[lig].title %>"
                                     title="<%= obj[lig].title %>"
                                     width="<%= larg %>" height="<%= haut %>">
