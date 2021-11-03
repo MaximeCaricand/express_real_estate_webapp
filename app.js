@@ -64,4 +64,12 @@ app.use(function (err, req, res, next) {
     res.render('error');
 });
 
+app.locals.getVal = function (locals, fieldName) {
+    console.log(locals[fieldName]);
+    if (typeof locals[fieldName] == 'undefined') {
+        return null;
+    }
+    return locals[fieldName];
+}
+
 module.exports = app;

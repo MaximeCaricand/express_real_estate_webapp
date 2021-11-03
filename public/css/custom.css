@@ -6,10 +6,6 @@
     padding-bottom: 2px !important;
 }
 
-.required {
-    color:red;
-}
-
 .required:after {
     content:" - Mandatory";
     font-style: italic;

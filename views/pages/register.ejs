@@ -16,7 +16,8 @@
                         <form class="needs-validation" method="post" novalidate>
                             <div class="form-group form-white mb-4 col-md-12 need-required">
                                 <label for="email">Email</label>
-                                <input type="email" id="email" name="email" class="form-control" required />
+                                <input type="email" id="email" name="email" class="form-control"
+                                    value="<%- getVal(locals, 'email') %>" required />
                                 <div class="invalid-feedback">
                                     Please provide a valid email.
                                 </div>
@@ -24,11 +25,13 @@
                             <div class="row mb-2" name="firstname-lastname">
                                 <div class="form-group form-white mb-4 col-md-6 need-required">
                                     <label for="firstname">Firstname</label>
-                                    <input type="text" id="firstname" name="firstname" class="form-control" required />
+                                    <input type="text" id="firstname" name="firstname" class="form-control"
+                                        value="<%- getVal(locals, 'firstname') %>" required />
                                 </div>
                                 <div class="form-group form-white mb-4 col-md-6 need-required">
                                     <label for="lastname">Lastname</label>
-                                    <input type="text" id="lastname" name="lastname" class="form-control" required />
+                                    <input type="text" id="lastname" name="lastname" class="form-control"
+                                        value="<%- getVal(locals, 'lastname') %>" required />
                                 </div>
                             </div>
                             <div class="row" name="password">

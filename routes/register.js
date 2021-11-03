@@ -11,6 +11,9 @@ router.get('/', function (req, res, next) {
 
 router.post('/', [...registerValidation], async function (req, res, next) {
     const errors = validationResult(req);
+    res.locals.email = req.body.email;
+    res.locals.firstname = req.body.firstname;
+    res.locals.lastname = req.body.lastname;
     if (!errors.isEmpty()) {
         return res.render('pages/register', { errors: errors.array() });
     }
