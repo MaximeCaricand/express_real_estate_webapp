@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+<body class="container mw-100 px-0 ">
+    <%- include('../partials/header',  {user}); %>
+    <main>
+        <div id="content" class="mx-auto col-11">
+            <% if(typeof page === 'undefined') { %>
+            <p>This is the main page</p>
+            <% } else {%>
+            <%- include('../content/' + page,  {user, params}); %>
+            <% } %>
+        </div>
+    </main>
+    <footer class="footer fixed-bottom  bg-white">
+        <%- include('../partials/footer'); %>
+    </footer>
+</body>
+
+</html>

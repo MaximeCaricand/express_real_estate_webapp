@@ -6,7 +6,7 @@ const { validationResult } = require('express-validator')
 
 /* GET register page. */
 router.get('/', function(req, res, next) {
-    res.render('user/register');
+    res.render('pages/register');
 });
 
 router.post('/', [...registerValidation], async function (req, res, next) {
@@ -15,13 +15,13 @@ router.post('/', [...registerValidation], async function (req, res, next) {
     res.locals.firstname = req.body.firstname;
     res.locals.lastname = req.body.lastname;
     if (!errors.isEmpty()) {
-        return res.render('user/register', { errors: errors.array() });
+        return res.render('pages/register', { errors: errors.array() });
     }
     await userService.registerUser({ ...req.body }, req.body.password)
         .then(() => res.redirect(301, '/login'))
         .catch(err => {
             if (err === 'Email already exists') {
-                return res.render('user/register', { errors: [{ msg: 'Email already associated to an account' }] });
+                return res.render('pages/register', { errors: [{ msg: 'Email already associated to an account' }] });
             }
             return res.status(500).json({ err })
         });

@@ -1,0 +1,60 @@
+<script type="text/javascript" src="/js/detail.js"></script>
+<link rel="stylesheet" href="/css/detail.css">
+
+<div class="row" style="border:none; background:transparent; height:300px;">
+
+    <% var imagesExiste = (params.ad.src_images != undefined); %>
+
+    <!-- Div permettant de mettre en superposition l'image principale de l'annonce et la croix rouge si le bien est vendu/loué -->
+    <div class="col-sm-6 col-md-6 col-xs-12">
+        <!-- Image principal qui est affiché -->
+        <img id="myImageView" class="replace-2x img-responsive b-lazy b-loaded"
+            src="../../../<%= (imagesExiste ? params.ad.src_images[0] : "images/none.jpg") %>"
+            alt="<%= params.ad.title %>" title="<%= params.ad.title %>" itemprop="image" width="100%" height="230px"
+            style="border:1px solid darkslategray; max-width:100%; max-height:230px" />
+
+        <!-- Liste de toutes les images liées à l'annonce. Au clic sur l'une d'elle, l'image principal affiché (ci-dessus) est remplacé par celle selectionné -->
+        <div class="listImage" style="margin-top: 1em;">
+            <% if(imagesExiste) { %>
+            <% for(var ind = 0; ind < params.ad.src_images.length; ind++) { %>
+            <img class="imgSelection" src="../../../<%= params.ad.src_images[ind] %>" width="40px" height="40px"
+                style="border: 1px solid darkslategray; cursor:pointer"
+                onclick="switchImage('../../../<%= params.ad.src_images[ind] %>')" />
+            <% } %>
+            <% } %>
+        </div>
+    </div>
+
+    <!-- Div permettant d'afficher les informations les plus importantes concernant le bien (Titre, prix, disponibilité, type, date de dispo) -->
+    <div class="col-sm-6 col-md-6 col-xs-12">
+        <% var estDispo = params.ad.status === "DISPONIBLE"; %>
+
+        <h2 style="margin-bottom: 0; color:#03225C;"><%= params.ad.title %></h2>
+        <i id="<%= (estDispo ? "selectAdDispo" : "selectAdIndispo") %>">
+            <%= (estDispo ?
+                        "Disponible " :
+                        "INDISPONIBLE ")
+                        %>
+
+            <% if (estDispo) { %>
+            <%= (params.ad.type === "A VENDRE" ?
+                            "à la vente" :
+                            "à la location")
+                            %>
+            <% } %>
+        </i>
+
+        <br><br><br>
+        <h3 style="color:#03225C;">Tarif : <%= params.ad.price %></h3>
+
+        <br><br>
+        <p class="text-start fs-4">Available from : <%= params.ad.starting %></p>
+    </div>
+</div>
+
+<!-- Textarea permettant d'afficher tout le contenu de la description du bien -->
+<label for="description" class="form-label">Description du bien</label>
+<textarea id="description" oncreate="textarea_height(4)" rows='10' class="form-control form-control-sm" type="text"
+    spellcheck="false" style="color:#03225C; resize:none" readonly>
+                <%= params.ad.description %>
+            </textarea>

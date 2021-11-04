@@ -4,7 +4,7 @@ const router = express.Router();
 
 /* GET login listing. */
 router.get('/', function (req, res, next) {
-    res.render('user/login');
+    res.render('pages/login');
 });
 
 router.post('/', auth, async function (req, res, next) {

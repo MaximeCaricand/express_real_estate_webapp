@@ -1,4 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-dark col-12"> <!-- fixed-top -->
+<nav class="navbar navbar-expand-lg navbar-light bg-dark col-12">
+    <!-- fixed-top -->
     <div class="container-fluid px-5">
         <a class="navbar-brand" href="/">Real Estate</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
@@ -8,21 +9,15 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Properties :</a>
+                    <a class="nav-link" href="/content/sale">For sale</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/content/ads/all">All</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/content/ads/sale">For sale</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/content/ads/rent">For rent</a>
+                    <a class="nav-link" href="/content/rent">For rent</a>
                 </li>
             </ul>
             <form class="mx-auto">
                 <div class="input-group">
-                    <input id="inputsearch" type="search" placeholder="Find a property (Title)" class="form-control" />
+                    <input id="inputsearch" type="search" placeholder="Find a property" class="form-control" />
                     <button type="button" class="btn btn-primary" onclick="findPropertyByTitle()">
                         <i class="fas fa-search"></i>
                     </button>
@@ -30,28 +25,28 @@
             </form>
             <ul class="navbar-nav ms-auto">
                 <% if(typeof user !== 'undefined') { %>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <span>
-                                <%= user.firstname %> <%= user.lastname %>
-                            </span>
-                        </a>
-                        <ul class="dropdown-menu" style="right: 0; left: auto;" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">Profil</a></li>
-                            <hr />
-                            <li><a class="dropdown-item" href="#">My Properties</a></li>
-                            <li><a class="dropdown-item" href="#">Comments</a></li>
-                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
-                        </ul>
-                    </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <span>
+                            <%= user.firstname %> <%= user.lastname %>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu" style="right: 0; left: auto;" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="#">Profil</a></li>
+                        <hr />
+                        <li><a class="dropdown-item" href="#">My Properties</a></li>
+                        <li><a class="dropdown-item" href="#">Comments</a></li>
+                        <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                    </ul>
+                </li>
                 <% } else { %>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/register">Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/register">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
                 <% } %>
             </ul>
         </div>

@@ -1,0 +1,24 @@
+#selectAdImage:hover {
+  background-color: rgba(25, 186, 186, 0.2);
+}
+
+#selectAdDispo {
+  color: rgba(13, 175, 48, 0.8);
+  text-align: right;
+  vertical-align: top;
+}
+
+#selectAdIndispo {
+  color: rgba(253, 27, 27, 0.8);
+  text-align: right;
+  vertical-align: top;
+}
+
+.containerdiv {
+  position: relative;
+  text-align: center;
+}
+
+.cornerimage {
+  position: absolute;
+}

@@ -10,7 +10,6 @@ const { connect } = require('./lib/index');
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
 var registerRouter = require('./routes/register');
-var contentRouter = require('./routes/content');
 
 var app = express();
 
@@ -38,7 +37,6 @@ app.use('/images', express.static(path.join(__dirname, 'public/assets/images')))
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
-app.use('/content', contentRouter);
 
 // passport config
 const User = require('./lib/schemas/user.schema');
