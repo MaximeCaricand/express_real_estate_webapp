@@ -1,44 +1,59 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/" style="color: rgb(71, 91, 151)">etatsE laeR</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-light bg-dark col-12"> <!-- fixed-top -->
+    <div class="container-fluid px-5">
+        <a class="navbar-brand" href="/">Real Estate</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/content/ads/all">Tous</a>
+                    <a class="nav-link" href="#">Properties :</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/content/ads/sold">A vendre</a>
+                    <a class="nav-link" href="/content/ads/all">All</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/content/ads/location">A louer</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Edition
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="/user">Profil</a></li>
-                        <hr/>
-                        <li><a class="dropdown-item" href="/content/ads/all">Mes annonces</a></li>
-                        <li><a class="dropdown-item" href="#">Commentaires</a></li>
-                    </ul>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="/user/login">se connecter</a>
+                    <a class="nav-link" href="/content/ads/sale">For sale</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/user/register">s'inscrire</a>
+                    <a class="nav-link" href="/content/ads/rent">For rent</a>
                 </li>
             </ul>
+            <form class="mx-auto">
+                <div class="input-group">
+                    <input type="search" placeholder="Find a property" class="form-control" />
+                    <button type="button" class="btn btn-primary">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </form>
+            <ul class="navbar-nav ms-auto">
+                <% if(typeof user !== 'undefined') { %>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <span>
+                                <%= user.firstname %> <%= user.lastname %>
+                            </span>
+                        </a>
+                        <ul class="dropdown-menu" style="right: 0; left: auto;" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">Profil</a></li>
+                            <hr />
+                            <li><a class="dropdown-item" href="#">My Properties</a></li>
+                            <li><a class="dropdown-item" href="#">Comments</a></li>
+                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                        </ul>
+                    </li>
+                <% } else { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                <% } %>
+            </ul>
         </div>
-
-        <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
     </div>
 </nav>

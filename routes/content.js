@@ -1,4 +1,6 @@
 var express = require('express');
+const { auth } = require('../lib/index');
+const passport = require('passport');
 var router = express.Router();
 
 var typeVendre = "A VENDRE"
@@ -38,7 +40,7 @@ description:"Tavira - Villa typique 'algarvia' 4 chambres, jardin-piscine, natur
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    res.render('content/index', { param: 'passage en param test' });
+    res.render('content/index', { user: req.user });
 });
 
 /* GET all ads page. */
@@ -48,13 +50,13 @@ router.get('/ads/all', function (req, res, next) {
 });
 
 /* GET sold ads page. */
-router.get('/ads/sold', function (req, res, next) {
+router.get('/ads/sale', function (req, res, next) {
     obj = ads.filter( ad => ad.published === "true").filter( ad => ad.type === typeVendre);
     res.render('content/ads/ads', obj);
 });
 
 /* GET location ads page. */
-router.get('/ads/location', function (req, res, next) {
+router.get('/ads/rent', function (req, res, next) {
     obj = ads.filter( ad => ad.published === "true").filter( ad => ad.type === typeLouer);
     res.render('content/ads/ads', obj);
 });

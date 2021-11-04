@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <%- include('../partials/head'); %>
 </head>
 
-
-<body class="container">
+<body class="container mw-100 px-0 h-100">
     <header>
-        <%- include('../partials/header'); %>
+        <%- include('../partials/header',  {user}); %>
     </header>
 
-    <%- param %><br><br><br>
-
-    <main>
-        <h1>This is great</h1>
-        <p>Welcome to templating using EJS</p>
+    <main class="mt-4">
+        <div id="content" class="mx-auto col-11 bg-light">
+            <h1>This is great</h1>
+            <p>Welcome to templating using EJS</p>
+            <%= user %>
+        </div>
     </main>
 
-
+    
     <%- include('../partials/footer'); %>
 </body>
+
 </html>
