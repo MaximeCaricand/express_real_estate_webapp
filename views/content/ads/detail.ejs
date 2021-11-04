@@ -7,6 +7,19 @@
         function switchImage(newImage) {
             document.getElementById("myImageView").src=newImage;
         }
+
+        function textarea_height(minHeight) {
+            let textareaDescript = document.getElementById('description');
+            let textareaRows = textareaDescript.value.split("\n");
+
+            if(textareaRows.length > 0 && textareaRows.length > minHeight)
+                nbLignes = textareaRows.length;
+            else
+                nbLignes = minHeight;
+            
+            alert(nbLignes);
+            document.getElementById('description').rows = nbLignes;
+        }
     </script>
 
     <style>
@@ -47,13 +60,12 @@
 
                     <!-- Liste de toutes les images liées à l'annonce. Au clic sur l'une d'elle, l'image principal affiché (ci-dessus) est remplacé par celle selectionné -->
                     <div class="listImage" style="margin-top: 1em;">
-                        
-                        <% for(var ind = 0; ind < ad.src_images.length; ind++) { %>
-                            <% let newimage = (imagesExiste ? ad.src_images[ind] : "images/none.jpg"); %> 
-                            
-                            <img class="imgSelection" src="../../../<%= newimage %>"
-                            width="40px" height="40px" style="border: 1px solid darkslategray; cursor:pointer"
-                            onclick="switchImage('../../../<%= newimage %>')"/>
+                        <% if(imagesExiste) { %>
+                            <% for(var ind = 0; ind < ad.src_images.length; ind++) { %>
+                                <img class="imgSelection" src="../../../<%= ad.src_images[ind] %>"
+                                width="40px" height="40px" style="border: 1px solid darkslategray; cursor:pointer"
+                                onclick="switchImage('../../../<%= ad.src_images[ind] %>')"/>
+                            <% } %>
                         <% } %>
                     </div>
                 </div>
@@ -87,7 +99,7 @@
 
             <!-- Textarea permettant d'afficher tout le contenu de la description du bien -->
             <label for="description" class="form-label">Description du bien</label>
-            <textarea id="description" class="form-control form-control-sm" type="text" cols='70' rows='8' spellcheck="false" style="color:#03225C; resize:none" readonly>
+            <textarea id="description" oncreate="textarea_height(4)" rows='10' class="form-control form-control-sm" type="text" spellcheck="false" style="color:#03225C; resize:none" readonly>
                 <%= ad.description %>
             </textarea>
 
