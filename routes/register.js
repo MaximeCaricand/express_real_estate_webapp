@@ -5,7 +5,7 @@ const router = express.Router();
 const { validationResult } = require('express-validator')
 
 /* GET register page. */
-router.get('/', function (req, res, next) {
+router.get('/', function(req, res, next) {
     res.render('pages/register');
 });
 

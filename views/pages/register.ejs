@@ -1,4 +1,7 @@
-<%- include('../partials/head')-%>
+<head>
+    <%- include('../partials/head')-%>
+</head>
+
 <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-8 col-lg-6 col-xl-6">
@@ -7,11 +10,11 @@
                     <div class="mb-md-5 mt-md-4">
                         <h2 class="fw-bold mb-5">REGISTER</h2>
                         <% if(typeof errors !== 'undefined') { %>
-                        <% errors.forEach(error=> { %>
-                        <div class="alert alert-danger" role="alert">
-                            <%= error.msg %>
-                        </div>
-                        <% }); %>
+                            <% errors.forEach(error=> { %>
+                                <div class="alert alert-danger" role="alert">
+                                    <%= error.msg %>
+                                </div>
+                            <% }); %>
                         <% } %>
                         <form class="needs-validation" method="post" novalidate>
                             <div class="form-group form-white mb-4 col-md-12 need-required">

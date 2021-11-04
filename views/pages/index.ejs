@@ -9,7 +9,11 @@
     <%- include('../partials/header',  {user}); %>
     <main>
         <div id="content" class="mx-auto col-11">
+            <% if(typeof page === 'undefined') { %>
+            <p>This is the main page</p>
+            <% } else {%>
             <%- include('../content/' + page,  {user, params}); %>
+            <% } %>
         </div>
     </main>
     <footer class="footer fixed-bottom  bg-white">
