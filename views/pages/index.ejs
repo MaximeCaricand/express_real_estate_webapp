@@ -5,18 +5,14 @@
     <%- include('../partials/head'); %>
 </head>
 
-<body class="container mw-100 px-0 h-100">
-    <header>
-        <%- include('../partials/header',  {user}); %>
-    </header>
-    <main class="mt-4">
-        <div id="content" class="mx-auto col-11 bg-light">
-            <h1>This is great</h1>
-            <p>Welcome to templating using EJS</p>
-            <%= user %>
+<body class="container mw-100 px-0 ">
+    <%- include('../partials/header',  {user}); %>
+    <main>
+        <div id="content" class="mx-auto col-11">
+            <%- include('../content/' + page,  {user, params}); %>
         </div>
     </main>
-    <footer class="footer fixed-bottom">
+    <footer class="footer fixed-bottom  bg-white">
         <%- include('../partials/footer'); %>
     </footer>
 </body>
