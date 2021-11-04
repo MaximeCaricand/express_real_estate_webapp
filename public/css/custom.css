@@ -10,14 +10,11 @@
   content: " - Mandatory";
   font-style: italic;
 }
-.was-validated .form-check-input:invalid ~ .form-check-label,
-.form-control.is-valid,
 .was-validated .form-control:valid,
 .form-control.is-invalid,
 .was-validated .form-control:invalid {
   background-image: url() !important;
   border-color: #ced4da;
-  color: white;
 }
 
 .nav-link {
