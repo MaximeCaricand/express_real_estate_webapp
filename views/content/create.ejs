@@ -5,7 +5,8 @@
                 <div class="card-body p-5 text-center">
                     <div class="mt-md-4">
                         <h2 class="fw-bold mb-5">CREATE A PROPERTY AD</h2>
-                        <form class="needs-validation" method="post" autocomplete="off" novalidate>
+                        <form class="needs-validation" method="post" autocomplete="off" novalidate
+                            encType="multipart/form-data">
                             <div class="row">
                                 <div class="form-group form-white mb-4 col-md-6 col-sm-12 need-required">
                                     <label for="title">Title</label>
@@ -51,12 +52,18 @@
                                         <option value="Sold">Sold</option>
                                     </select>
                                 </div>
+                                <div class="form-group mt-4">
+                                    <label for="images">Images</label>
+                                    <input type="file" id="images" name="images" class="form-control border-0"
+                                        accept=".jpg,.png" multiple>
+                                </div>
                             </div>
-                            <button class="btn btn-light btn-lg mt-5 px-5" type="submit">Confirm</button>
-                        </form>
                     </div>
+                    <button class="btn btn-light btn-lg mt-5 px-5" id="submit" type="submit">Confirm</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>

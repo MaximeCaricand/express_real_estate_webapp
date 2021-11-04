@@ -6,6 +6,7 @@ var logger = require('morgan');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const { connect } = require('./lib/index');
+const fileUpload = require('express-fileupload');
 
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
@@ -29,6 +30,7 @@ app.use(require('express-session')({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(fileUpload());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules/bootstrap/dist')));
 app.use(express.static(path.join(__dirname, 'node_modules/@fortawesome/fontawesome-free')));
