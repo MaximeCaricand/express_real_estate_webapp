@@ -11,7 +11,7 @@
                 form.classList.add('was-validated');
                 const mandatoryFields = form.getElementsByClassName('need-required');
                 Array.prototype.filter.call(mandatoryFields, field => {
-                    if (!field.getElementsByClassName('form-control')[0].value) {
+                    if (!field.getElementsByClassName('form-control')[0]?.value && !field.getElementsByClassName('form-select')[0]?.value) {
                         field.getElementsByTagName('label')[0].classList.add('required');
                     }
                 });

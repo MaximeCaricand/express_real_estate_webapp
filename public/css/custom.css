@@ -6,9 +6,12 @@
   padding-bottom: 2px !important;
 }
 
+.need-required > label:after {
+  content: " *";
+}
+
 .required:after {
-  content: " - Mandatory";
-  font-style: italic;
+  color: red;
 }
 .was-validated .form-control:valid,
 .form-control.is-invalid,

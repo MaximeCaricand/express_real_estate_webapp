@@ -67,10 +67,11 @@ app.use(function (err, req, res, next) {
 });
 
 app.locals.getVal = function (locals, fieldName) {
-    if (typeof locals[fieldName] == 'undefined') {
-        return null;
+    if (locals && locals[fieldName]) {
+        console.log(locals[fieldName]);
+        return locals[fieldName];
     }
-    return locals[fieldName];
+    return null;
 }
 
 module.exports = app;

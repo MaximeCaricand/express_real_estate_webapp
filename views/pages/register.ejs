@@ -2,6 +2,9 @@
     <%- include('../partials/head')-%>
 </head>
 
+<% var accountTypes = [{view: 'User', value: 'user'}, {view: 'Real state agent', value: 'agent'}]; %>
+
+
 <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-8 col-lg-6 col-xl-6">
@@ -20,7 +23,7 @@
                             <div class="form-group form-white mb-4 col-md-12 need-required">
                                 <label for="email">Email</label>
                                 <input type="email" id="email" name="email" class="form-control"
-                                    value="<%- getVal(locals, 'email') %>" required />
+                                    value="<%- getVal(locals.lastForm, 'email') %>" required />
                                 <div class="invalid-feedback">
                                     Please provide a valid email.
                                 </div>
@@ -29,12 +32,12 @@
                                 <div class="form-group form-white mb-4 col-md-6 need-required">
                                     <label for="firstname">Firstname</label>
                                     <input type="text" id="firstname" name="firstname" class="form-control"
-                                        value="<%- getVal(locals, 'firstname') %>" required />
+                                        value="<%- getVal(locals.lastForm, 'firstname') %>" required />
                                 </div>
                                 <div class="form-group form-white mb-4 col-md-6 need-required">
                                     <label for="lastname">Lastname</label>
                                     <input type="text" id="lastname" name="lastname" class="form-control"
-                                        value="<%- getVal(locals, 'lastname') %>" required />
+                                        value="<%- getVal(locals.lastForm, 'lastname') %>" required />
                                 </div>
                             </div>
                             <div class="row" name="password">
@@ -53,8 +56,14 @@
                                 <label for="accountType">Account type</label>
                                 <select class="form-select" id="accountType" name="accountType" required>
                                     <option value="" hidden="true">choose one</option>
-                                    <option value="user">User</option>
-                                    <option value="agent">Real state agent</option>
+                                    <% for(var i=0; i<accountTypes.length; i++) {%>
+                                    <%if (getVal(locals.lastForm, 'accountType') === accountTypes[i].value) {%>
+                                    <option value="<%- accountTypes[i].value %>" selected><%- accountTypes[i].view %>
+                                    </option>
+                                    <% } else {%>
+                                    <option value="<%- accountTypes[i].value %>"><%- accountTypes[i].view %></option>
+                                    <% }%>
+                                    <% }%>
                                 </select>
                             </div>
                             <div class="form-group form-check mt-2 mb-4">

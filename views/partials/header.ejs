@@ -10,11 +10,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/content/sale">For sale</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item me-3">
                     <a class="nav-link" href="/content/rent">For rent</a>
                 </li>
                 <% if(typeof user !== 'undefined' && user.accountType === 'agent') { %>
-                <li class="nav-item createButton">
+                <span class="divider " style="border-right: 1px solid white;"></span>
+                <li class="nav-item createButton ms-3">
                     <a class="nav-link" href="/content/create">Post your ad</a>
                 </li>
                 <li class="nav-item createButton">
