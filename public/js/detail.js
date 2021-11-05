@@ -2,15 +2,10 @@ function switchImage(newImage) {
     document.getElementById("myImageView").src = newImage;
 }
 
-function textarea_height(minHeight) {
-    let textareaDescript = document.getElementById('description');
-    let textareaRows = textareaDescript.value.split("\n");
+function addQuestion() {
+    alert(document.getElementById('askQuestion').value);
+    //Maxime, faut ajouter le commentaire dans la base
+    
 
-    if (textareaRows.length > 0 && textareaRows.length > minHeight)
-        nbLignes = textareaRows.length;
-    else
-        nbLignes = minHeight;
-
-    alert(nbLignes);
-    document.getElementById('description').rows = nbLignes;
+    location = location;
 }

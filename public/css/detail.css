@@ -1,7 +1,30 @@
+#startPage {
+  margin-top: 1em;
+}
+
+#myImageView {
+  border: 1px solid darkslategray;
+  max-width:100%;
+  max-height:230px;
+}
+
+div.listImage {
+  margin-top: 1em;
+}
+
+img.imgSelection{
+  border: 1px solid darkslategray;
+  cursor:pointer;
+}
+
 #selectAdDispo {
   color: rgba(13, 175, 48, 0.8);
 }
 
 #selectAdIndispo {
   color: rgba(253, 27, 27, 0.8);
+}
+
+.textColorProperty {
+  color: #03225C;
 }

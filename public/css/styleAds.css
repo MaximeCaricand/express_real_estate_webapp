@@ -1,3 +1,7 @@
+#startPage {
+  margin-top: 1em;
+}
+
 #selectAdImage:hover {
   background-color: rgba(25, 186, 186, 0.2);
 }

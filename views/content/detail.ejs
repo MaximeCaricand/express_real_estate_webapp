@@ -1,7 +1,7 @@
 <script type="text/javascript" src="/js/detail.js"></script>
 <link rel="stylesheet" href="/css/detail.css">
 
-<div class="container" style="margin-top: 1em;">
+<div id="startPage" class="container">
     <div class="row">
 
         <% var imagesExists = (params.ad.src_images != undefined); %>
@@ -12,16 +12,14 @@
             <div class="text-center">
                 <img id="myImageView" class="replace-2x img-responsive b-lazy b-loaded"
                 src="../../../<%= (imagesExists ? params.ad.src_images[0] : "images/none.jpg") %>"
-                alt="<%= params.ad.title %>" title="<%= params.ad.title %>" itemprop="image" height="230px"
-                style="border:1px solid darkslategray; max-width:100%; max-height:230px" />
+                alt="<%= params.ad.title %>" title="<%= params.ad.title %>" itemprop="image" height="230px"/>
             </div>
 
             <!-- List of all the images linked to the ad. When clicking on one of them, the main image displayed (above) is replaced by the selected one -->
-            <div class="listImage" style="margin-top: 1em;">
+            <div class="listImage">
                 <% if(imagesExists) { %>
                 <% for(var ind = 0; ind < params.ad.src_images.length; ind++) { %>
                 <img class="imgSelection" src="../../../<%= params.ad.src_images[ind] %>" width="40px" height="40px"
-                    style="border: 1px solid darkslategray; cursor:pointer"
                     onclick="switchImage('../../../<%= params.ad.src_images[ind] %>')" />
                 <% } %>
                 <% } %>
@@ -32,7 +30,7 @@
         <div class="col-sm-4">
             <% var isAvailable = params.ad.propertyStatus === "Available"; %>
 
-            <h2 style="margin-bottom: 0; color:#03225C;"><%= params.ad.title %></h2>
+            <h2 class="textColorProperty" style="margin-bottom: 0;"><%= params.ad.title %></h2>
             <i id="<%= (isAvailable ? "selectAdDispo" : "selectAdIndispo") %>">
                 <%= (isAvailable ?
                     "Available " :
@@ -48,7 +46,7 @@
             </i>
 
             <br><br><br>
-            <h3 style="color:#03225C;">
+            <h3 class="textColorProperty">
                 Price : <%= params.ad.price %> € <%= (params.ad.propertyType === "Rent" ? " / month " : "") %> 
             </h3>
 
@@ -63,7 +61,7 @@
     <div class="row">
         <div class="gx-4 gx-lg-5 justify-content-center">
             <div>
-                <h2 style="color:#03225C;">Description of the property</h2>
+                <h2 class="textColorProperty">Description of the property</h2>
 
                 <p>
                 <% if(params.ad.description != undefined) { %> 
@@ -84,11 +82,35 @@
     <div class="row">
         <div class="gx-4 gx-lg-5 justify-content-center">
             <div>
-                <h2 style="color:#03225C;">Comments</h2>
+                <h2 class="textColorProperty">Comments</h2>
     
-                <p>
-                    truc
-                </p>
+                <h5 class="textColorProperty">Ask your question :</h5>
+                <div class="form-row">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="askQuestion" placeholder="What is your question ?">
+                        <button class="btn btn-outline-secondary" type="button" onclick="addQuestion()">Confirm</button>
+                    </div>
+                </div>
+
+                <% if(params.ad.comments != undefined && params.ad.comments.length > 0) { %>
+                <h5 class="textColorProperty">The asked questions :</h5>
+                <div class="form-row">
+                    <% for(let indQuest=0; indQuest<params.ad.comments.length; indQuest++) { %> 
+                    <div class="form-group col-md">
+                      <label for="question<%= indQuest+1 %>">Question <%= indQuest+1 %> : <b><%= params.ad.comments[indQuest].question %></b></label>
+
+                      <select id="question<%= indQuest+1 %>" class="form-control">
+                        <% if(params.ad.comments[indQuest].answers != undefined) { %>
+                        <% for(let indAns=0; indAns<params.ad.comments[indQuest].answers.length; indAns++) { %> 
+                        <option><%= params.ad.comments[indQuest].answers[indAns] %></option>
+                        <% } %>
+                        <% } %>
+                      </select>
+
+                    </div>
+                    <% } %>
+                </div>
+                <% } %>
             </div>
         </div>
     </div>

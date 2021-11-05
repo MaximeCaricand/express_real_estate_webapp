@@ -64,8 +64,8 @@ var available = "Available"
 var rented = "Rented"
 var sold = "Sold"
 
-ads = [{id:1, title:"MAISON DE FOU", propertyType:saleType, price:"125 000", publicationStatus:publisStatus, propertyStatus:available, date:"03/11/2021", src_images:["images/maison_de_fou_1.jpg","images/maison_de_fou_2.jpg","images/maison_de_fou_3.jpg"]},
-{id:2, title:"PETIT APPARTEMENT", propertyType:rentType, price:"820", publicationStatus:publisStatus, propertyStatus:rented, date:"14/08/2019", src_images:["images/petit_appartement.jpg"], description:"description 2"},
+ads = [{id:1, title:"MAISON DE FOU", propertyType:saleType, price:"125 000", publicationStatus:publisStatus, propertyStatus:available, date:"03/11/2021", src_images:["images/maison_de_fou_1.jpg","images/maison_de_fou_2.jpg","images/maison_de_fou_3.jpg"], comments:[{question:"qui es tu ?",answers:["Florian","Maxime","Quelqu'un","Personne"]}]},
+{id:2, title:"PETIT APPARTEMENT", propertyType:rentType, price:"820", publicationStatus:publisStatus, propertyStatus:rented, date:"14/08/2019", src_images:["images/petit_appartement.jpg"], description:"description 2", comments:[{question:"qui es tu ?",answers:["Florian"]},{question:"qui es tu ?"},{question:"c'était bien à faire tout ca ?",answers:["Oui mais plutot long et complexe","Tranquille"]}]},
 {id:3, title:"GROSSE BARAQUE", propertyType:rentType, price:"2 390", publicationStatus:publisStatus, propertyStatus:available, date:"24/11/1998", src_images:["images/grosse_baraque_1.jpeg","images/grosse_baraque_2.jpeg","images/grosse_baraque_3.jpeg","images/grosse_baraque_4.jpeg","images/grosse_baraque_5.jpeg","images/grosse_baraque_6.jpeg"], description:"description 3"},
 {id:4, title:"MANOIR", propertyType:saleType, price:"1 490 000", publicationStatus:publisStatus, propertyStatus:sold, date:"06-06-2487", description:"description 4"},
 {id:5, title:"EL PALACO", propertyType:saleType, price:"5 732 000", publicationStatus:publisStatus, propertyStatus:available, date:"27-02-1999", src_images:["images/palace_1.jpg","images/palace_2.jpg"],
