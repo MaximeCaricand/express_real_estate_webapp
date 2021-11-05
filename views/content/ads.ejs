@@ -2,27 +2,27 @@
 
 <div id="startPage" class="container">
     <% var columns = 3; %>
-    <% for(var lig = 0; lig < params.obj.length; lig) { %>
+    <% for(var lig = 0; lig < params.ads.length; lig) { %>
     <div class="row">
         <% for(var col = 0; col < columns; col++) { %>
 
         <div class="col-sm-4" id="selectAdImage" style="cursor:pointer;"
-            onclick="location.href = '/content/detail?id=<%= params.obj[lig].id %>';">
+            onclick="location.href = '/content/detail?id=<%= params.ads[lig].id %>';">
             <% var larg = 350; var haut = 350; %>
-            <% var isAvailable = params.obj[lig].propertyStatus === "Available"; %>
-            <% var imagesExists = (params.obj[lig].src_images != undefined); %>
+            <% var isAvailable = params.ads[lig].propertyStatus === "Available"; %>
+            <% var imagesExists = (params.ads[lig].src_images != undefined); %>
 
             <!-- Div allowing to overlay the main image of the ad and the red cross if the property is sold/rent -->
             <div class="containerdiv">
                 <% if(! isAvailable) { %>
                 <img class="img-responsive cornerimage" src="../../../images/nondispo.png" alt="images/nondispo.png"
-                    title="<%= params.obj[lig].title %>"
+                    title="<%= params.ads[lig].title %>"
                     width="<%= larg %>" height="<%= haut %>">
                 <% } %>
 
                 <img class="img-responsive rounded b-lazy b-loaded"
-                    src="../../../<%= (imagesExists ? params.obj[lig].src_images[0] : "images/none.jpg") %>"
-                    alt="<%= params.obj[lig].title %>" title="<%= params.obj[lig].title %>"
+                    src="../../../<%= (imagesExists ? params.ads[lig].src_images[0] : "images/none.jpg") %>"
+                    alt="<%= params.ads[lig].title %>" title="<%= params.ads[lig].title %>"
                     width="<%= larg %>" height="<%= haut %>">
             </div>
 
@@ -30,23 +30,23 @@
             <div class="info">
                 <table width="<%= larg %>">
                     <tr>
-                        <td><%= params.obj[lig].title %></td>
+                        <td><%= params.ads[lig].title %></td>
                         <td id="<%= (isAvailable ? "selectAdAvaila" : "selectAdUnavaila") %>" rowspan="2">
                             <%= (isAvailable ?
-                                "("+params.obj[lig].propertyStatus+") "+params.obj[lig].propertyType :
-                                params.obj[lig].propertyStatus)
+                                "("+params.ads[lig].propertyStatus+") "+params.ads[lig].propertyType :
+                                params.ads[lig].propertyStatus)
                             %>
                         </td>
                     </tr>
                     <tr>
-                        <td><%= params.obj[lig].price %> € <%= (params.obj[lig].propertyType === "Rent" ? " / month " : "") %> </td>
+                        <td><%= params.ads[lig].price %> € <%= (params.ads[lig].propertyType === "Rent" ? " / month " : "") %> </td>
                     </tr>
                 </table>
             </div>
         </div>
 
         <%  lig++;
-            if(lig >= params.obj.length)
+            if(lig >= params.ads.length)
             col = columns;
         } %>
     </div>
