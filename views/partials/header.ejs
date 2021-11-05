@@ -23,10 +23,10 @@
                 </li>
                 <% } %>
             </ul>
-            <form class="mx-auto">
+            <form class="mx-auto" action="/content/search">
                 <div class="input-group">
-                    <input id="inputsearch" type="search" placeholder="Find a property" class="form-control" />
-                    <button type="button" class="btn btn-primary" onclick="findPropertyByTitle()">
+                    <input id="search" type="search" name="search" placeholder="Find a property" class="form-control" />
+                    <button class="btn btn-primary" type="submit">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
@@ -41,10 +41,8 @@
                         </span>
                     </a>
                     <ul class="dropdown-menu" style="right: 0; left: auto;" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Profil</a></li>
+                        <li><a class="dropdown-item" href="/content/my-ads">My Properties</a></li>
                         <hr />
-                        <li><a class="dropdown-item" href="#">My Properties</a></li>
-                        <li><a class="dropdown-item" href="#">Comments</a></li>
                         <li><a class="dropdown-item" href="/logout">Logout</a></li>
                     </ul>
                 </li>

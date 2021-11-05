@@ -1,7 +1,11 @@
 <link rel="stylesheet" href="/css/styleAds.css">
 
 <div id="startPage" class="container">
+    <% if(params.type=== 'search') { %>
+    <h1 class="text-center">Search results</h1>
+    <% } else {%>
     <h1 class="text-center">Property for <%= params.type %> </h1>
+    <% } %>
     <% var columns = 3; %>
     <% for(var lig = 0; lig < params.ads.length; lig) { %>
     <div class="row">

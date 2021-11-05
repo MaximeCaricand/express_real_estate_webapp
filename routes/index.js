@@ -35,6 +35,13 @@ router.get('/content/detail', async function (req, res, next) {
     res.render('pages/index', { page: 'detail', user: req.user, params: { ad } });
 });
 
+// search an ad
+router.get('/content/search', async function (req, res, next) {
+    const ads = await adService.getByName(req.query.search);
+    console.log(ads);
+    res.render('pages/index', { page: 'ads', user: req.user, params: { ads, type: 'search' } });
+});
+
 // get ad create form template
 router.get('/content/create', grantAccess(['agent']), function (req, res, next) {
     res.render('pages/index', { page: 'adForm', user: req.user, params: {} });
@@ -83,7 +90,6 @@ router.post('/content/my-ads/update', grantAccess(['agent']), async function (re
 
 // confirm update
 router.post('/content/my-ads/confirmUpdate', grantAccess(['agent']), async function (req, res, next) {
-    console.log('here');
     await adService.updateById(req.body.id, req.user.id, req.body);
     return res.redirect('/content/my-ads');
 });
