@@ -55,13 +55,13 @@
         </div>
     </div>
 
-    <hr class="bg-danger border-2 border-top border-danger">
+    <hr class="bg-dark border-2 border-top border-dark">
 
     <!-- Row to display the entire content of the property description -->
     <div class="row">
         <div class="gx-4 gx-lg-5 justify-content-center">
             <div>
-                <h2 class="textColorProperty">Description of the property</h2>
+                <h2 class="textColorProperty mb-3">Description</h2>
                 <p>
                     <% if(params.ad.description != undefined) { %>
                     <% let splitDescipt = params.ad.description.split('\n'); %>
@@ -75,50 +75,54 @@
         </div>
     </div>
 
-    <hr class="bg-danger border-2 border-top border-danger">
+    <hr class="bg-dark border-2 border-top border-dark">
 
     <!-- Row permettant d'afficher tout les commentaires liés a ce bien -->
     <div class="row">
         <div class="gx-4 gx-lg-5 justify-content-center">
             <div>
                 <h2 class="textColorProperty">Comments</h2>
-
-                <h5 class="textColorProperty">Ask your question :</h5>
-                <div class="form-row">
-                    <div class="input-group mb-3">
-                        <form action="/" method="post">
-                            <input type="text" class="form-control" id="askQuestion"
-                                placeholder="What is your question ?">
-                            <button class="btn btn-outline-secondary" type="button"
-                                onclick="askQuestion('<%= params.ad.id %>')">Confirm</button>
-                        </form>
-                    </div>
+                <% if(typeof user !== 'undefined') { %>
+                <div class="form-row mt-3">
+                    <form action="/content/detail/question" method="post" class="input-group mb-3">
+                        <input type="text" class="form-control" id="question" name="question"
+                            placeholder="What is your question ?" required>
+                        <input type="hidden" name="id" value="<%= params.ad.id %>">
+                        <button class="btn btn-outline-secondary" type="submit">Confirm</button>
+                    </form>
                 </div>
-
+                <hr />
+                <% } %>
                 <% if(params.ad.comments != undefined && params.ad.comments.length > 0) { %>
-                <h5 class="textColorProperty">The asked questions :</h5>
                 <div class="form-row">
                     <% for(let indQuest=0; indQuest<params.ad.comments.length; indQuest++) { %>
-                    <div class="form-group col-md">
-                        <label>Question <%= indQuest+1 %> : <b><%= params.ad.comments[indQuest].question %></b></label>
-
+                    <div class="form-group col-md mt-4">
+                        <label class="mb-2">Question :
+                            <span class="question-bold"><%= params.ad.comments[indQuest].question %></span>
+                            -
+                            <span class="question-italic"><%= params.ad.comments[indQuest].user %></span>
+                        </label>
                         <% if(params.ad.comments[indQuest].answers != undefined) { %>
                         <% for(let indAns=0; indAns<params.ad.comments[indQuest].answers.length; indAns++) { %>
-                        <textarea rows="3" type="text" class="form-control" readonly>
-                            <%= params.ad.comments[indQuest].answers[indAns] %>
-                        </textarea>
-                        <% } %>
-                        <% } %>
-
-                        <div class="input-group mb-3">
-                            <form action="/" method="post">
-                                <textarea id="ansQuestion" rows="3" type="text" class="form-control"
-                                    placeholder="Your response"></textarea>
-                                <button class="btn btn-outline-secondary" type="button"
-                                    onclick="ansQuestion('<%= params.ad.id %>','<%= indQuest %>')">Answer</button>
-                            </form>
+                        <div class="bg-light py-2">
+                            <span
+                                class="question-bold"><%= params.ad.comments[indQuest].answers[indAns].content %></span>
+                            -
+                            <span class="question-italic">Maxime Caricand</span>
                         </div>
+                        <% } %>
+                        <% } %>
+                        <% if(typeof user !== 'undefined' && user.accountType === 'agent') { %>
+                        <form action="/content/detail/answser" method="post" class="input-group mb-3 mt-2">
+                            <textarea id="answser" rows="3" type="text" name="answser" class="form-control"
+                                placeholder="Your response" required></textarea>
+                            <input type="hidden" name="questionIndex" value="<%= indQuest %>">
+                            <input type="hidden" name="id" value="<%= params.ad.id %>">
+                            <button class="btn btn-outline-secondary" type="submit">Confirm</button>
+                        </form>
+                        <% } %>
                     </div>
+                    <hr />
                     <% } %>
                 </div>
                 <% } %>

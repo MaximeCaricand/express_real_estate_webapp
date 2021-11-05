@@ -10,7 +10,16 @@
     <main>
         <div id="content" class="mx-auto col-11">
             <% if(typeof page === 'undefined') { %>
-            <p>This is the main page</p>
+            <div class="py-5 h-100">
+                <div id="imgback" class="row justify-content-center align-items-center">
+                    <div class="col-10">
+                        <div id="TextWelcome" class="text-center">
+                            <h1>Awsome Real Estate website</h1>
+                            <h3>Welcome !</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <% } else {%>
             <%- include('../content/' + page,  {user, params}); %>
             <% } %>

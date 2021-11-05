@@ -4,7 +4,6 @@ const router = express.Router();
 
 /* GET login listing. */
 router.get('/', function (req, res, next) {
-    console.log(req.locals);
     res.render('pages/login');
 });
 

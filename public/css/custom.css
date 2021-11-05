@@ -37,3 +37,11 @@
   font-weight: bold !important;
   padding-right: 10px !important;
 }
+
+.question-bold {
+  font-weight: bold;
+}
+
+.question-italic {
+  font-style: italic;
+}

@@ -20,13 +20,13 @@ router.get('/logout', function (req, res) {
 /* GET sold ads page. */
 router.get('/content/sale', async function (req, res, next) {
     const ads = await adService.getPublishedAds('Sale') ?? {};
-    res.render('pages/index', { page: 'ads', user: req.user, params: { ads } });
+    res.render('pages/index', { page: 'ads', user: req.user, params: { ads, type: 'sale' } });
 });
 
 /* GET location ads page. */
 router.get('/content/rent', async function (req, res, next) {
     const ads = await adService.getPublishedAds('Rent') ?? {};
-    res.render('pages/index', { page: 'ads', user: req.user, params: { ads } });
+    res.render('pages/index', { page: 'ads', user: req.user, params: { ads, type: 'rent' } });
 });
 
 /* GET details ads page. */
@@ -36,13 +36,35 @@ router.get('/content/detail', async function (req, res, next) {
 });
 
 // content routes
-router.get('/content/create', grantAccess('agent'), function (req, res, next) {
+router.get('/content/create', grantAccess(['agent']), function (req, res, next) {
     res.render('pages/index', { page: 'create', user: req.user, params: {} });
 });
 
-router.post('/content/create', grantAccess('agent'), async function (req, res, next) {
+router.post('/content/create', grantAccess(['agent']), async function (req, res, next) {
     await adService.createAd(req.body, [...req.files.images]);
     res.redirect('/');
 });
+
+// Handle question
+router.post('/content/detail/question', grantAccess(['agent', 'user']), async function (req, res, next) {
+    const id = req.body.id;
+    const content = req.body.question;
+    if (id && content) {
+        await adService.addQuestion(id, content, req.user);
+    }
+    res.redirect('back');
+});
+
+// Handle anwser
+router.post('/content/detail/answser', grantAccess(['agent']), async function (req, res, next) {
+    const id = req.body.id;
+    const content = req.body.answser;
+    const questionIndex = req.body.questionIndex;
+    if (id && content && questionIndex) {
+        await adService.addAnswser(id, content, questionIndex, req.user);
+    }
+    res.redirect('back');
+});
+
 
 module.exports = router;

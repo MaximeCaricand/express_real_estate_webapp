@@ -4,17 +4,17 @@
 
 #myImageView {
   border: 1px solid darkslategray;
-  max-width:100%;
-  max-height:230px;
+  max-width: 100%;
+  max-height: 230px;
 }
 
 div.listImage {
   margin-top: 1em;
 }
 
-img.imgSelection{
+img.imgSelection {
   border: 1px solid darkslategray;
-  cursor:pointer;
+  cursor: pointer;
 }
 
 #selectAdDispo {
@@ -26,5 +26,5 @@ img.imgSelection{
 }
 
 .textColorProperty {
-  color: #03225C;
+  color: #03225c;
 }
