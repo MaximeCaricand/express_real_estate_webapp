@@ -30,28 +30,30 @@
 
         <!-- Div permettant d'afficher les informations les plus importantes concernant le bien (Titre, prix, disponibilité, type, date de dispo) -->
         <div class="col-sm-4">
-            <% var estDispo = params.ad.status === "DISPONIBLE"; %>
+            <% var isAvailable = params.ad.propertyStatus === "Available"; %>
 
             <h2 style="margin-bottom: 0; color:#03225C;"><%= params.ad.title %></h2>
-            <i id="<%= (estDispo ? "selectAdDispo" : "selectAdIndispo") %>">
-                <%= (estDispo ?
-                    "Disponible " :
-                    "INDISPONIBLE ")
+            <i id="<%= (isAvailable ? "selectAdDispo" : "selectAdIndispo") %>">
+                <%= (isAvailable ?
+                    "Available " :
+                    "UNAVAILABLE ")
                 %>
 
-                <% if (estDispo) { %>
-                <%= (params.ad.type === "A VENDRE" ?
-                    "à la vente" :
-                    "à la location")
+                <% if (isAvailable) { %>
+                <%= (params.ad.type === "Sale" ?
+                    "for sale" :
+                    "for rent")
                 %>
                 <% } %>
             </i>
 
             <br><br><br>
-            <h3 style="color:#03225C;">Price : <%= params.ad.price %></h3>
+            <h3 style="color:#03225C;">
+                Price : <%= params.ad.price %> € <%= (params.ad.propertyType === "Rent" ? " / month " : "") %> 
+            </h3>
 
             <br><br>
-            <p class="text-start fs-4">Available from : <%= params.ad.starting %></p>
+            <p class="text-start fs-4">Available from : <%= params.ad.date %></p>
         </div>
     </div>
 
@@ -63,11 +65,14 @@
             <div>
                 <h2 style="color:#03225C;">Description du bien</h2>
 
-                <% let splitDescipt = params.ad.description.split('\n'); %>
                 <p>
+                <% if(params.ad.description != undefined) { %> 
+                    <% let splitDescipt = params.ad.description.split('\n'); %>
+                
                     <% for(let ind=0; ind<splitDescipt.length; ind++) { %> 
                     <%= splitDescipt[ind] %><br>
                     <% } %>
+                <% } %>
                 </p>
             </div>
         </div>

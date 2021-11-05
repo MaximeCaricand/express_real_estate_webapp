@@ -2,26 +2,26 @@
 
 <div class="table-responsive">
     <table class="table table-striped">
-        <% var nbColonne = 3; %>
+        <% var columns = 3; %>
         <% for(var lig = 0; lig < params.obj.length; lig) { %>
-        <tr colspan="<%= nbColonne %>">
-            <% for(var col = 0; col < nbColonne; col++) { %>
+        <tr colspan="<%= columns %>">
+            <% for(var col = 0; col < columns; col++) { %>
 
             <td id="selectAdImage" style="cursor:pointer;"
                 onclick="location.href = '/content/detail?id=<%= params.obj[lig].id %>';">
                 <% var larg = 350; var haut = 350; %>
-                <% var estDispo = params.obj[lig].status === "DISPONIBLE"; %>
-                <% var imagesExiste = (params.obj[lig].src_images != undefined); %>
+                <% var isAvailable = params.obj[lig].propertyStatus === "Available"; %>
+                <% var imagesExists = (params.obj[lig].src_images != undefined); %>
 
                 <!-- Div permettant de mettre en superposition l'image principale de l'annonce et la croix rouge si le bien est vendu/loué -->
                 <div class="containerdiv">
-                    <% if(! estDispo) { %>
+                    <% if(! isAvailable) { %>
                     <img class="img-responsive cornerimage" src="../../../images/nondispo.png" alt="images/nondispo.png"
                         title="<%= params.obj[lig].title %>" width="<%= larg %>" height="<%= haut %>">
                     <% } %>
 
                     <img class="img-responsive rounded b-lazy b-loaded"
-                        src="../../../<%= (imagesExiste ? params.obj[lig].src_images[0] : "images/none.jpg") %>"
+                        src="../../../<%= (imagesExists ? params.obj[lig].src_images[0] : "images/none.jpg") %>"
                         alt="<%= params.obj[lig].title %>" title="<%= params.obj[lig].title %>" width="<%= larg %>"
                         height="<%= haut %>">
                 </div>
@@ -31,11 +31,11 @@
                     <table style="margin-left: 32px;" width="<%= larg %>">
                         <tr>
                             <td><%= params.obj[lig].title %></td>
-                            <td id="<%= (estDispo ? "selectAdDispo" : "selectAdIndispo") %>" rowspan="2">
-                                <%= (estDispo ?
-                                                        "("+params.obj[lig].status+") "+params.obj[lig].type :
-                                                        params.obj[lig].status)
-                                                    %>
+                            <td id="<%= (isAvailable ? "selectAdAvaila" : "selectAdUnavaila") %>" rowspan="2">
+                                <%= (isAvailable ?
+                                    "("+params.obj[lig].propertyStatus+") "+params.obj[lig].propertyType :
+                                    params.obj[lig].propertyStatus)
+                                %>
                             </td>
                         </tr>
                         <tr>
@@ -47,7 +47,7 @@
 
             <%  lig++;
                 if(lig >= params.obj.length)
-                col = nbColonne;
+                col = columns;
             } %>
         </tr>
         <% } %>
