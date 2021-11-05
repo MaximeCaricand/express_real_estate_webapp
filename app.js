@@ -68,7 +68,6 @@ app.use(function (err, req, res, next) {
 
 app.locals.getVal = function (locals, fieldName) {
     if (locals && locals[fieldName]) {
-        console.log(locals[fieldName]);
         return locals[fieldName];
     }
     return null;

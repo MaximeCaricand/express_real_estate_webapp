@@ -48,3 +48,17 @@
 .question-italic {
   font-style: italic;
 }
+
+.hidden-form {
+  display: inline;
+}
+
+.hidden-form > button {
+  border: none; /* Remove borders */
+  background-color: transparent;
+  border-radius: 3px;
+}
+
+.hidden-form > button:hover {
+  background-color: lightgray;
+}

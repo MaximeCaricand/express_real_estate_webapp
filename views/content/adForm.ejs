@@ -1,0 +1,109 @@
+<% var propertyTypeValues = [{view: 'Sale', value: 'Sale'}, {view: 'Rent', value: 'Rent'}]; %>
+<% var publicationStatusValues = [{view: 'Published', value: 'Published'}, {view: 'Hidden', value: 'Hidden'}]; %>
+<% var propertyStatusValues = [{view: 'Available', value: 'Available'}, {view: 'Rented', value: 'Rented'}, {view: 'Sold', value: 'Sold'}]; %>
+
+<div class="py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-10">
+            <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                <div class="card-body p-5 text-center">
+                    <div class="mt-md-4">
+                        <% if(typeof params.id === 'undefined') { %>
+                        <h2 class="fw-bold mb-5">CREATE A PROPERTY AD</h2>
+                        <form class="needs-validation" method="post" autocomplete="off" novalidate
+                            encType="multipart/form-data">
+                            <% } else { %>
+                            <h2 class="fw-bold mb-5">UPDATE A PROPERTY AD</h2>
+                            <form class="needs-validation" action="confirmUpdate" method="post" autocomplete="off"
+                                novalidate encType="multipart/form-data">
+                                <% } %>
+
+                                <div class="row">
+                                    <div class="form-group form-white mb-4 col-md-6 col-sm-12 need-required">
+                                        <label for="title">Title</label>
+                                        <input type="text" id="title" name="title" class="form-control"
+                                            value="<%- getVal(locals.formData, 'title') %>" required />
+                                    </div>
+                                    <div class="form-group form-white mb-4 col-md-2 col-sm-6 offset-md-1 need-required">
+                                        <label for="price">Price</label>
+                                        <input type="number" id="price" placeholder="€" name="price"
+                                            class="form-control" value="<%- getVal(locals.formData, 'price') %>"
+                                            required />
+                                    </div>
+                                    <div class="form-group form-white mb-4 col-md-3 col-sm-6 need-required">
+                                        <label for="date">Availabitily date</label>
+                                        <input type="date" id="date" name="date" class="form-control"
+                                            value="<%- getVal(locals.formData, 'date') %>" required />
+                                    </div>
+                                    <div class="form-group form-white mb-4 col-md-12 need-required">
+                                        <label for="description">Description</label>
+                                        <textarea class="form-control" id="description" name="description" rows="4"
+                                            required><%- getVal(locals.formData, 'description') %></textarea>
+                                    </div>
+                                    <div class="form-group form-white mb-4 col-sm-12 col-md-4 need-required">
+                                        <label for="propertyType">Property type</label>
+                                        <select class="form-select" id="propertyType" name="propertyType" required>
+                                            <option value="" hidden="true">choose one</option>
+                                            <% for(var i=0; i<propertyTypeValues.length; i++) {%>
+                                            <%if (getVal(locals.formData, 'propertyType') === propertyTypeValues[i].value) {%>
+                                            <option value="<%- propertyTypeValues[i].value %>" selected>
+                                                <%- propertyTypeValues[i].view %>
+                                            </option>
+                                            <% } else {%>
+                                            <option value="<%- propertyTypeValues[i].value %>">
+                                                <%- propertyTypeValues[i].view %></option>
+                                            <% }%>
+                                            <% }%>
+                                        </select>
+                                    </div>
+                                    <div class="form-group form-white mb-4 col-sm-12 col-md-4 need-required">
+                                        <label for="publicationStatus">Publication status</label>
+                                        <select class="form-select" id="publicationStatus" name="publicationStatus"
+                                            required>
+                                            <option value="" hidden="true">choose one</option>
+                                            <% for(var i=0; i<publicationStatusValues.length; i++) {%>
+                                            <%if (getVal(locals.formData, 'publicationStatus') === publicationStatusValues[i].value) {%>
+                                            <option value="<%- publicationStatusValues[i].value %>" selected>
+                                                <%- publicationStatusValues[i].view %>
+                                            </option>
+                                            <% } else {%>
+                                            <option value="<%- publicationStatusValues[i].value %>">
+                                                <%- publicationStatusValues[i].view %></option>
+                                            <% }%>
+                                            <% }%>
+                                        </select>
+                                    </div>
+                                    <div class="form-group form-white mb-4 col-sm-12 col-md-4 need-required">
+                                        <label for="propertyStatus">Property status</label>
+                                        <select class="form-select" id="propertyStatus" name="propertyStatus" required>
+                                            <option value="" hidden="true">choose one</option>
+                                            <% for(var i=0; i<propertyStatusValues.length; i++) {%>
+                                            <%if (getVal(locals.formData, 'propertyStatus') === propertyStatusValues[i].value) {%>
+                                            <option value="<%- propertyStatusValues[i].value %>" selected>
+                                                <%- propertyStatusValues[i].view %>
+                                            </option>
+                                            <% } else {%>
+                                            <option value="<%- propertyStatusValues[i].value %>">
+                                                <%- propertyStatusValues[i].view %></option>
+                                            <% }%>
+                                            <% }%>
+                                        </select>
+                                    </div>
+                                    <% if(typeof params.id !== 'undefined') { %>
+                                    <input type="text" id="adID" name="id" value="<%= params.id %>" hidden />
+                                    <% } %>
+                                    <div class="form-group mt-4">
+                                        <label for="images">Images</label>
+                                        <input type="file" id="images" name="images" class="form-control border-0"
+                                            accept=".jpg,.png" multiple>
+                                    </div>
+                                </div>
+                                <button class="btn btn-light btn-lg mt-5 px-5" id="submit"
+                                    type="submit">Confirm</button>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
