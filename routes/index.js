@@ -37,11 +37,11 @@ router.get('/content/detail', async function (req, res, next) {
 });
 
 // content routes
-router.get('/content/create', grantAccess(true), function (req, res, next) {
+router.get('/content/create', grantAccess('agent'), function (req, res, next) {
     res.render('pages/index', { page: 'create', user: req.user, params: {} });
 });
 
-router.post('/content/create', grantAccess(true), async function (req, res, next) {
+router.post('/content/create', grantAccess('agent'), async function (req, res, next) {
     await adService.createAd(req.body, [...req.files.images]);
     res.redirect('/');
 });
