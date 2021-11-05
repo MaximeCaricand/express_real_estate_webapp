@@ -88,7 +88,7 @@
                 <div class="form-row">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" id="askQuestion" placeholder="What is your question ?">
-                        <button class="btn btn-outline-secondary" type="button" onclick="addQuestion()">Confirm</button>
+                        <button class="btn btn-outline-secondary" type="button" onclick="askQuestion('<%= params.ad.id %>')">Confirm</button>
                     </div>
                 </div>
 
@@ -97,15 +97,20 @@
                 <div class="form-row">
                     <% for(let indQuest=0; indQuest<params.ad.comments.length; indQuest++) { %> 
                     <div class="form-group col-md">
-                      <label for="question<%= indQuest+1 %>">Question <%= indQuest+1 %> : <b><%= params.ad.comments[indQuest].question %></b></label>
+                        <label>Question <%= indQuest+1 %> : <b><%= params.ad.comments[indQuest].question %></b></label>
 
-                      <select id="question<%= indQuest+1 %>" class="form-control">
                         <% if(params.ad.comments[indQuest].answers != undefined) { %>
-                        <% for(let indAns=0; indAns<params.ad.comments[indQuest].answers.length; indAns++) { %> 
-                        <option><%= params.ad.comments[indQuest].answers[indAns] %></option>
+                        <% for(let indAns=0; indAns<params.ad.comments[indQuest].answers.length; indAns++) { %>
+                        <textarea rows="3" type="text" class="form-control" readonly>
+                            <%= params.ad.comments[indQuest].answers[indAns] %>
+                        </textarea>
                         <% } %>
                         <% } %>
-                      </select>
+
+                        <div class="input-group mb-3">
+                            <textarea id="ansQuestion" rows="3" type="text" class="form-control" placeholder="Your response"></textarea>
+                            <button class="btn btn-outline-secondary" type="button" onclick="ansQuestion('<%= params.ad.id %>','<%= indQuest %>')">Answer</button>
+                        </div>
 
                     </div>
                     <% } %>
