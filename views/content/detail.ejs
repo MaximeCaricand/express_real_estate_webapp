@@ -112,7 +112,7 @@
                         </div>
                         <% } %>
                         <% } %>
-                        <% if(typeof user !== 'undefined' && user.accountType === 'agent') { %>
+                        <% if(typeof user !== 'undefined' && user.accountType === 'agent' && user.id === params.ad.user) { %>
                         <form action="/content/detail/answser" method="post" class="input-group mb-3 mt-2">
                             <textarea id="answser" rows="3" type="text" name="answser" class="form-control"
                                 placeholder="Your response" required></textarea>
@@ -129,7 +129,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 <br><br><br><br>
