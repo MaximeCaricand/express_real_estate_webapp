@@ -32,7 +32,6 @@ router.get('/content/rent', async function (req, res, next) {
 /* GET details ads page. */
 router.get('/content/detail', async function (req, res, next) {
     const ad = await adService.getAdByID(req.query.id) ?? {};
-    console.log(ad);
     res.render('pages/index', { page: 'detail', user: req.user, params: { ad } });
 });
 

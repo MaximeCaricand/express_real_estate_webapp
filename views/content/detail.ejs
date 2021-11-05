@@ -4,23 +4,23 @@
 <div id="startPage" class="container">
     <div class="row">
 
-        <% var imagesExists = (params.ad.src_images != undefined); %>
+        <% var imagesExists = (params.ad.images != undefined); %>
 
         <!-- Div allowing to overlay the main image of the ad and the red cross if the property is sold/rent -->
         <div class="col-sm">
             <!-- Main image that is displayed -->
             <div class="text-center">
                 <img id="myImageView" class="replace-2x img-responsive b-lazy b-loaded"
-                src="../../../<%= (imagesExists ? params.ad.src_images[0] : "images/none.jpg") %>"
-                alt="<%= params.ad.title %>" title="<%= params.ad.title %>" itemprop="image" height="230px"/>
+                    src="<%= (imagesExists ? params.ad.images[0].content : "images/none.jpg") %>"
+                    alt="<%= params.ad.title %>" title="<%= params.ad.title %>" itemprop="image" height="230px" />
             </div>
 
             <!-- List of all the images linked to the ad. When clicking on one of them, the main image displayed (above) is replaced by the selected one -->
             <div class="listImage">
                 <% if(imagesExists) { %>
-                <% for(var ind = 0; ind < params.ad.src_images.length; ind++) { %>
-                <img class="imgSelection" src="../../../<%= params.ad.src_images[ind] %>" width="40px" height="40px"
-                    onclick="switchImage('../../../<%= params.ad.src_images[ind] %>')" />
+                <% for(var ind = 0; ind < params.ad.images.length; ind++) { %>
+                <img class="imgSelection" src="<%= params.ad.images[ind].content %>" width="40px" height="40px"
+                    onclick="switchImage('<%= params.ad.images[ind].content %>')" />
                 <% } %>
                 <% } %>
             </div>
@@ -38,7 +38,7 @@
                 %>
 
                 <% if (isAvailable) { %>
-                <%= (params.ad.type === "Sale" ?
+                <%= (params.ad.propertyType === "Sale" ?
                     "for sale" :
                     "for rent")
                 %>
@@ -47,11 +47,11 @@
 
             <br><br><br>
             <h3 class="textColorProperty">
-                Price : <%= params.ad.price %> € <%= (params.ad.propertyType === "Rent" ? " / month " : "") %> 
+                Price : <%= params.ad.price %> € <%= (params.ad.propertyType === "Rent" ? " / month " : "") %>
             </h3>
 
             <br><br>
-            <p class="text-start fs-4">Available from : <%= params.ad.date %></p>
+            <p class="text-start fs-4">Available on : <%= params.ad.formatedDate %></p>
         </div>
     </div>
 
@@ -62,15 +62,14 @@
         <div class="gx-4 gx-lg-5 justify-content-center">
             <div>
                 <h2 class="textColorProperty">Description of the property</h2>
-
                 <p>
-                <% if(params.ad.description != undefined) { %> 
+                    <% if(params.ad.description != undefined) { %>
                     <% let splitDescipt = params.ad.description.split('\n'); %>
-                
-                    <% for(let ind=0; ind<splitDescipt.length; ind++) { %> 
+
+                    <% for(let ind=0; ind<splitDescipt.length; ind++) { %>
                     <%= splitDescipt[ind] %><br>
                     <% } %>
-                <% } %>
+                    <% } %>
                 </p>
             </div>
         </div>
@@ -83,19 +82,23 @@
         <div class="gx-4 gx-lg-5 justify-content-center">
             <div>
                 <h2 class="textColorProperty">Comments</h2>
-    
+
                 <h5 class="textColorProperty">Ask your question :</h5>
                 <div class="form-row">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="askQuestion" placeholder="What is your question ?">
-                        <button class="btn btn-outline-secondary" type="button" onclick="askQuestion('<%= params.ad.id %>')">Confirm</button>
+                        <form action="/" method="post">
+                            <input type="text" class="form-control" id="askQuestion"
+                                placeholder="What is your question ?">
+                            <button class="btn btn-outline-secondary" type="button"
+                                onclick="askQuestion('<%= params.ad.id %>')">Confirm</button>
+                        </form>
                     </div>
                 </div>
 
                 <% if(params.ad.comments != undefined && params.ad.comments.length > 0) { %>
                 <h5 class="textColorProperty">The asked questions :</h5>
                 <div class="form-row">
-                    <% for(let indQuest=0; indQuest<params.ad.comments.length; indQuest++) { %> 
+                    <% for(let indQuest=0; indQuest<params.ad.comments.length; indQuest++) { %>
                     <div class="form-group col-md">
                         <label>Question <%= indQuest+1 %> : <b><%= params.ad.comments[indQuest].question %></b></label>
 
@@ -108,10 +111,13 @@
                         <% } %>
 
                         <div class="input-group mb-3">
-                            <textarea id="ansQuestion" rows="3" type="text" class="form-control" placeholder="Your response"></textarea>
-                            <button class="btn btn-outline-secondary" type="button" onclick="ansQuestion('<%= params.ad.id %>','<%= indQuest %>')">Answer</button>
+                            <form action="/" method="post">
+                                <textarea id="ansQuestion" rows="3" type="text" class="form-control"
+                                    placeholder="Your response"></textarea>
+                                <button class="btn btn-outline-secondary" type="button"
+                                    onclick="ansQuestion('<%= params.ad.id %>','<%= indQuest %>')">Answer</button>
+                            </form>
                         </div>
-
                     </div>
                     <% } %>
                 </div>
