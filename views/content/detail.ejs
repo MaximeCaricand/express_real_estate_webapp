@@ -4,14 +4,14 @@
 <div id="startPage" class="container">
     <div class="row">
 
-        <% var imagesExists = (params.ad.images != undefined); %>
+        <% var imagesExists = (params.ad.images != undefined && params.ad.images.length > 0); %>
 
         <!-- Div allowing to overlay the main image of the ad and the red cross if the property is sold/rent -->
         <div class="col-sm">
             <!-- Main image that is displayed -->
             <div class="text-center">
                 <img id="myImageView" class="replace-2x img-responsive b-lazy b-loaded"
-                    src="<%= (imagesExists ? params.ad.images[0].content : "images/none.jpg") %>"
+                    src="<%= (imagesExists ? params.ad.images[0].content : "/assets/images/none.jpg") %>"
                     alt="<%= params.ad.title %>" title="<%= params.ad.title %>" itemprop="image" height="230px" />
             </div>
 

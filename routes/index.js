@@ -41,8 +41,12 @@ router.get('/content/create', grantAccess(['agent']), function (req, res, next) 
 });
 
 router.post('/content/create', grantAccess(['agent']), async function (req, res, next) {
-    await adService.createAd(req.body, [...req.files.images]);
-    res.redirect('/');
+    const images = req.files?.images ?? [];
+    const newAd = await adService.createAd(req.body, [...images], req.user);
+    if (newAd?.publicationStatus === 'Published') {
+        return res.redirect(`/content/detail?id=${newAd.id}`);
+    }
+    return res.redirect('/');
 });
 
 // Handle question

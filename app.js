@@ -32,10 +32,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(fileUpload());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'public/assets/')));
 app.use(express.static(path.join(__dirname, 'node_modules/bootstrap/dist')));
 app.use(express.static(path.join(__dirname, 'node_modules/@fortawesome/fontawesome-free')));
-app.use('/images', express.static(path.join(__dirname, 'public/assets/images')));
 
 app.use('/', indexRouter);
 app.use('/login', loginRouter);

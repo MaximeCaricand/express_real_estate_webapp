@@ -11,17 +11,16 @@
             onclick="location.href = '/content/detail?id=<%= params.ads[lig].id %>';">
             <% var larg = 350; var haut = 350; %>
             <% var isAvailable = params.ads[lig].propertyStatus === "Available"; %>
-            <% var imagesExists = (params.ads[lig].images != undefined); %>
+            <% var imagesExists = (params.ads[lig].images !== undefined && params.ads[lig].images.length > 0); %>
 
             <!-- Div allowing to overlay the main image of the ad and the red cross if the property is sold/rent -->
             <div class="containerdiv">
                 <% if(! isAvailable) { %>
-                <img class="img-responsive cornerimage" src="images/nondispo.png" alt="images/nondispo.png"
+                <img class="img-responsive cornerimage" src="/assets/images/nondispo.png" alt="nondispo.png"
                     title="<%= params.ads[lig].title %>" width="<%= larg %>" height="<%= haut %>">
                 <% } %>
-
                 <img class="img-responsive rounded b-lazy b-loaded"
-                    src="<%= (imagesExists ? params.ads[lig].images[0].content : "images/none.jpg") %>"
+                    src="<%= (imagesExists ? params.ads[lig].images[0].content : "/assets/images/none.jpg") %>"
                     alt="<%= params.ads[lig].title %>" title="<%= params.ads[lig].title %>" width="<%= larg %>"
                     height="<%= haut %>">
             </div>
