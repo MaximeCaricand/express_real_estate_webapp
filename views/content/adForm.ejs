@@ -89,17 +89,31 @@
                                             <% }%>
                                         </select>
                                     </div>
-                                    <% if(typeof params.id !== 'undefined') { %>
-                                    <input type="text" id="adID" name="id" value="<%= params.id %>" hidden />
-                                    <% } %>
+                                    <% if(typeof params.id === 'undefined') { %>
                                     <div class="form-group mt-4">
                                         <label for="images">Images</label>
                                         <input type="file" id="images" name="images" class="form-control border-0"
                                             accept=".jpg,.png" multiple>
                                     </div>
+                                    <% } %>
                                 </div>
+                                <% if(typeof params.id !== 'undefined') { %>
+                                <input type="text" id="adID" name="id" value="<%= params.id %>" hidden />
+                                <div class="row">
+                                    <div class="col-md-4 offset-md-2">
+                                        <button class="btn btn-light btn-lg mt-5 px-5">
+                                            <a class="hidden-link" href="/content/my-ads">Cancel</a>
+                                        </button>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button class="btn btn-light btn-lg mt-5 px-5" id="submit"
+                                            type="submit">Update</button>
+                                    </div>
+                                </div>
+                                <% } else {%>
                                 <button class="btn btn-light btn-lg mt-5 px-5" id="submit"
                                     type="submit">Confirm</button>
+                                <% } %>
                             </form>
                     </div>
                 </div>

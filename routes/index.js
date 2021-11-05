@@ -83,6 +83,7 @@ router.post('/content/my-ads/update', grantAccess(['agent']), async function (re
 
 // confirm update
 router.post('/content/my-ads/confirmUpdate', grantAccess(['agent']), async function (req, res, next) {
+    console.log('here');
     await adService.updateById(req.body.id, req.user.id, req.body);
     return res.redirect('/content/my-ads');
 });

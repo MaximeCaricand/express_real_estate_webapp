@@ -62,3 +62,8 @@
 .hidden-form > button:hover {
   background-color: lightgray;
 }
+
+.hidden-link {
+  color: black;
+  text-decoration: none;
+}
