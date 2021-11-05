@@ -26,3 +26,7 @@
 .cornerimage {
   position: absolute;
 }
+
+div.info table {
+  margin: auto;
+}
