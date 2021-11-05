@@ -6,9 +6,9 @@
 
         <% var imagesExists = (params.ad.src_images != undefined); %>
 
-        <!-- Div permettant de mettre en superposition l'image principale de l'annonce et la croix rouge si le bien est vendu/loué -->
+        <!-- Div allowing to overlay the main image of the ad and the red cross if the property is sold/rent -->
         <div class="col-sm">
-            <!-- Image principal qui est affiché -->
+            <!-- Main image that is displayed -->
             <div class="text-center">
                 <img id="myImageView" class="replace-2x img-responsive b-lazy b-loaded"
                 src="../../../<%= (imagesExists ? params.ad.src_images[0] : "images/none.jpg") %>"
@@ -16,7 +16,7 @@
                 style="border:1px solid darkslategray; max-width:100%; max-height:230px" />
             </div>
 
-            <!-- Liste de toutes les images liées à l'annonce. Au clic sur l'une d'elle, l'image principal affiché (ci-dessus) est remplacé par celle selectionné -->
+            <!-- List of all the images linked to the ad. When clicking on one of them, the main image displayed (above) is replaced by the selected one -->
             <div class="listImage" style="margin-top: 1em;">
                 <% if(imagesExists) { %>
                 <% for(var ind = 0; ind < params.ad.src_images.length; ind++) { %>
@@ -28,7 +28,7 @@
             </div>
         </div>
 
-        <!-- Div permettant d'afficher les informations les plus importantes concernant le bien (Titre, prix, disponibilité, type, date de dispo) -->
+        <!-- Div to display the most important information about the property (Title, price, availability, type, availability date) -->
         <div class="col-sm-4">
             <% var isAvailable = params.ad.propertyStatus === "Available"; %>
 
@@ -59,11 +59,11 @@
 
     <hr class="bg-danger border-2 border-top border-danger">
 
-    <!-- Row permettant d'afficher tout le contenu de la description du bien -->
+    <!-- Row to display the entire content of the property description -->
     <div class="row">
         <div class="gx-4 gx-lg-5 justify-content-center">
             <div>
-                <h2 style="color:#03225C;">Description du bien</h2>
+                <h2 style="color:#03225C;">Description of the property</h2>
 
                 <p>
                 <% if(params.ad.description != undefined) { %> 

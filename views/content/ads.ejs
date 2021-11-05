@@ -13,7 +13,7 @@
                 <% var isAvailable = params.obj[lig].propertyStatus === "Available"; %>
                 <% var imagesExists = (params.obj[lig].src_images != undefined); %>
 
-                <!-- Div permettant de mettre en superposition l'image principale de l'annonce et la croix rouge si le bien est vendu/loué -->
+                <!-- Div allowing to overlay the main image of the ad and the red cross if the property is sold/rent -->
                 <div class="containerdiv">
                     <% if(! isAvailable) { %>
                     <img class="img-responsive cornerimage" src="../../../images/nondispo.png" alt="images/nondispo.png"
@@ -26,7 +26,7 @@
                         height="<%= haut %>">
                 </div>
 
-                <!-- Div permettant d'afficher les premières informations concernant le bien (Titre, prix, disponibilité, type) -->
+                <!-- Div to display the first information about the property (Title, price, availability, type) -->
                 <div class="info">
                     <table style="margin-left: 32px;" width="<%= larg %>">
                         <tr>
